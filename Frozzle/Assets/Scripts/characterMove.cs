@@ -8,37 +8,50 @@ public class MoveToClick : MonoBehaviour
     Vector3 mousePos, transPos, targetPos;
     Vector3 mousePos_rot, transPos_rot, targetPos_rot;
 
+    // MAP CHECK VAR
+    public bool is_map;
+    Camera mainCam;
+    Vector2 targetPosition;
+    RaycastHit2D hit;
 
     public bool is_walk, flip_check, is_right;
     public Animator animator;
     public SpriteRenderer rend;
     public string lastside;
-    // Update is called once per frame
 
     private void Start()
     {
         //Camera = GameObject.Find("Camera").GetComponent<Camera>();
         animator = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
-        animator.SetBool("right", false);
-        animator.SetBool("left", false);
-        animator.SetBool("up", false);
-        animator.SetBool("down", false);
-        animator.SetBool("walk", false);
-        targetPos = new Vector3(0, 0, 0);
+
+        //animator.SetBool("right", false);
+        //animator.SetBool("up", false);
+        //animator.SetBool("walk", false);
+        targetPos = transform.position;
         flip_check = false;
         is_right = false;
         lastside = "오른쪽";
+        is_map = false;
+        
     }
     void Update()
     {
         if (Input.GetMouseButton(1)) 
             {
+                Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                hit = Physics2D.Raycast(worldPoint, Vector2.zero);
                 CalTargetPos();
                 find();
-                
-        }
+                groundCheck();
+            
+            
+            
+            }
+
+
         MoveToTarget();
+
 
     }
 
@@ -51,7 +64,10 @@ public class MoveToClick : MonoBehaviour
 
     void MoveToTarget()
     {
+        Debug.Log("이동시작");
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+        
+        
         if(targetPos == transform.position)
         {
             is_walk = true;
@@ -60,7 +76,9 @@ public class MoveToClick : MonoBehaviour
             if(flip_check == true)
             {
                 rend.flipX = true;
+          
             }
+            
         }
     }
     void stop_walking()
@@ -76,13 +94,13 @@ public class MoveToClick : MonoBehaviour
         dir_rot.y = 0;
         Quaternion rot = Quaternion.LookRotation(dir_rot.normalized);
         Vector3 MY = new Vector3(transform.position.x, transform.position.y, 0);
-        //Debug.Log("마우스 포인터의 위치:"+ transPos_rot +"플레이어의 위치: " + MY);
+
         if (targetPos_rot.y > MY.y)
         {
             if (targetPos_rot.x > MY.x)
             {
                 rend.flipX = false;
-                Debug.Log("오른쪽 위로 이동");
+                
                 animator.SetBool("walk", true);
                 animator.SetBool("right", true);
                 animator.SetBool("up", true);
@@ -92,7 +110,7 @@ public class MoveToClick : MonoBehaviour
             }
             else if (targetPos_rot.x < MY.x)
             {
-                Debug.Log("왼쪽 위로 위로 이동");
+                
                 rend.flipX = true;
                 animator.SetBool("walk", true);
                 animator.SetBool("right", false);
@@ -105,7 +123,7 @@ public class MoveToClick : MonoBehaviour
         {
             if (targetPos_rot.x > MY.x)
             {
-                Debug.Log("오른쪽 아래로 이동");
+                
                 rend.flipX = true;
                 animator.SetBool("walk", true);
                 animator.SetBool("right", true);
@@ -116,7 +134,7 @@ public class MoveToClick : MonoBehaviour
             }
             else if (targetPos_rot.x < MY.x)
             {
-                Debug.Log("왼쪽 아래로 이동");
+                
                 rend.flipX = false;
                 animator.SetBool("walk", true);
                 animator.SetBool("right", false);
@@ -127,5 +145,19 @@ public class MoveToClick : MonoBehaviour
             }
         }
 
+    }
+
+    void groundCheck()
+    {
+        
+        if(hit.collider != null)
+        {
+            //targetPosition = hit.transform.position;
+            if (GameObject.FindGameObjectWithTag("map"))
+            {
+                Debug.Log("맵 클릭 됨!");
+                is_map = true;
+            }
+        }
     }
 }
