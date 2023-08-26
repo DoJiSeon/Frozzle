@@ -9,7 +9,7 @@ public class MoveToClick : MonoBehaviour
     Vector3 mousePos_rot, transPos_rot, targetPos_rot;
 
 
-    public bool is_walk, is_left, is_right;
+    public bool is_walk, flip_check, is_right;
     public Animator animator;
     public SpriteRenderer rend;
     public string lastside;
@@ -26,7 +26,7 @@ public class MoveToClick : MonoBehaviour
         animator.SetBool("down", false);
         animator.SetBool("walk", false);
         targetPos = new Vector3(0, 0, 0);
-        is_left = false;
+        flip_check = false;
         is_right = false;
         lastside = "오른쪽";
     }
@@ -39,6 +39,7 @@ public class MoveToClick : MonoBehaviour
                 
         }
         MoveToTarget();
+
     }
 
     void CalTargetPos()
@@ -56,15 +57,15 @@ public class MoveToClick : MonoBehaviour
             is_walk = true;
             stop_walking();
             is_walk = false;
+            if(flip_check == true)
+            {
+                rend.flipX = true;
+            }
         }
     }
     void stop_walking()
     {
         animator.SetBool("walk", false);
-        if(is_left == true && is_right == false)
-        {
-            rend.flipX = true;
-        }
     }
     void find()
     {
@@ -86,7 +87,7 @@ public class MoveToClick : MonoBehaviour
                 animator.SetBool("right", true);
                 animator.SetBool("up", true);
                 is_right = true;
-                //is_left = false;
+                flip_check = false;
                 lastside = "1";
             }
             else if (targetPos_rot.x < MY.x)
@@ -97,7 +98,7 @@ public class MoveToClick : MonoBehaviour
                 animator.SetBool("right", false);
                 animator.SetBool("up", true);
                 is_right = false;
-                //is_left = true;
+                flip_check = true;
                 lastside = "2";
             }
         }else if (targetPos_rot.y < MY.y)
@@ -110,7 +111,7 @@ public class MoveToClick : MonoBehaviour
                 animator.SetBool("right", true);
                 animator.SetBool("up", false);
                 is_right = false;
-                //is_left = false;
+                flip_check = true;
                 lastside = "오른쪽";
             }
             else if (targetPos_rot.x < MY.x)
@@ -121,7 +122,7 @@ public class MoveToClick : MonoBehaviour
                 animator.SetBool("right", false);
                 animator.SetBool("up", false);
                 is_right = true;
-                //is_left = true;
+                flip_check = false;
                 lastside = "왼쪽";
             }
         }
