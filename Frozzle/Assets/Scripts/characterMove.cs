@@ -9,7 +9,7 @@ public class MoveToClick : MonoBehaviour
     Vector3 mousePos_rot, transPos_rot, targetPos_rot;
 
     // MAP CHECK VAR
-    public bool is_map;
+    public bool is_map, is_move;
     Camera mainCam;
     Vector2 targetPosition;
     RaycastHit2D hit;
@@ -43,16 +43,33 @@ public class MoveToClick : MonoBehaviour
                 hit = Physics2D.Raycast(worldPoint, Vector2.zero);
                 CalTargetPos();
                 find();
-                groundCheck();
+                //groundCheck();
             
             
             
             }
 
+        if (is_map == true && is_move == true)
+        {
+            MoveToTarget();
+        }
+        
 
-        MoveToTarget();
 
-
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("map"))
+        {
+            is_map = true;
+            is_move = true;
+            Debug.Log("맵 위에 서있어용~");
+        }
+        else
+        {
+            is_map = false;
+            Debug.Log("맵을 벗어났어요..");
+        }
     }
 
     void CalTargetPos()
@@ -64,7 +81,7 @@ public class MoveToClick : MonoBehaviour
 
     void MoveToTarget()
     {
-        Debug.Log("이동시작");
+        //Debug.Log("이동시작");
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         
         
@@ -76,7 +93,8 @@ public class MoveToClick : MonoBehaviour
             if(flip_check == true)
             {
                 rend.flipX = true;
-          
+                Debug.Log("이동완료");
+                is_move = false;
             }
             
         }
