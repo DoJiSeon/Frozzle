@@ -9,6 +9,6 @@ public class Start_Scene_Manager : MonoBehaviour
     public void OnClickStart()
     {
         // 2_PlayScene 불러오기 (씬 전환)
-        SceneManager.LoadScene("2_StoryStartScene");
+        SceneManager.LoadScene("2_PlayScene");
     }
 }
