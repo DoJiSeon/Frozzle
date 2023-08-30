@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2_PlayScene.unity
     guid: d46c2efb1d0af5e4082735998ab7809b
+  - enabled: 1
+    path: Assets/Scenes/Stage_1-1.unity
+    guid: 28e23e0730f7e9a4baf27114f45578d5
+  - enabled: 1
+    path: Assets/Scenes/Stage_1-2.unity
+    guid: e649c00ad6999574eb396327db5cef3a
+  - enabled: 1
+    path: Assets/Scenes/Stage_1-3.unity
+    guid: 79fad35773089f84ea6fc6f2d5f00979
+  - enabled: 1
+    path: Assets/Scenes/N_StageChoose.unity
+    guid: 2075b0a930c06aa479ff72f0963f57e0
   m_configObjects: {}
