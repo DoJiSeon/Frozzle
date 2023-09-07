@@ -6,6 +6,8 @@ public class ice_attack : MonoBehaviour
 {
     public GameObject bullet;
     public Transform pos;
+    public float cooltime;
+    private float curtime;
     void Start()
     {
         
@@ -13,10 +15,14 @@ public class ice_attack : MonoBehaviour
 
     void Update()
     {
-    
-        if (Input.GetKey(KeyCode.Z))
+        if (curtime <=0)
+        {
+            if (Input.GetKey(KeyCode.Z))
         {
             Instantiate(bullet,pos.position,transform.rotation);
         }
+        curtime=cooltime;
+        }
+        curtime-= Time.deltaTime;
     }
 }
