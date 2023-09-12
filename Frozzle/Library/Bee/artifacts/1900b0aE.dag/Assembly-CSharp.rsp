@@ -383,6 +383,8 @@
 "Assets/Scripts/CharacterMovement.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/MouseInput.cs"
+"Assets/Scripts/pollInput.cs"
+"Assets/Scripts/pollTest.cs"
 "Assets/Scripts/tilechooseTester.cs"
 "Assets/Scripts/UI_Manager/N_StageChoose.cs"
 "Assets/Scripts/UI_Manager/Stage_Scene_Manager_1.cs"
