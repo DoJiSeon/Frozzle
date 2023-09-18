@@ -12,6 +12,7 @@ public class Level_ : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         int levelAt = PlayerPrefs.GetInt("levelAt", 2);
 
         for (int i =  0; i < levelButtons.Length; i++)
@@ -19,6 +20,7 @@ public class Level_ : MonoBehaviour
                 if(i + 2 > levelAt)
                 levelButtons[i].interactable = false;
         }
+        PlayerPrefs.DeleteAll();
     }
 
 }
