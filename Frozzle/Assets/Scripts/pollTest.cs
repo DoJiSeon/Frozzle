@@ -21,6 +21,7 @@ public class pollTest : MonoBehaviour
     void Start()
     {
         tilemap = GetComponent<Tilemap>(); //타일맵 설정
+        toCool.Clear(); // 리스트 클리어
         toCool.Add(new Vector3Int(4, 0, 0)); //리스트에 기둥이 식을 수 있는 플레이어 위치 추가
         player = GameObject.Find("player"); //플레이어 설정
     }
@@ -34,7 +35,6 @@ public class pollTest : MonoBehaviour
             Debug.Log(currentPos); //현재 위치 콘솔에 찍기
             if (currentPos.x >= (toCool[0].x - 1) && currentPos.x <= (toCool[0].x + 1) && currentPos.y >= (toCool[0].y - 1) && currentPos.y <= (toCool[0].y + 1)) //그리고 현재 위치가 기둥이 식을 수 있는 위치라면
             {
-                
                 tilemap.SwapTile(tilemap.GetTile(new Vector3Int(4, -1, 0)), animatedTile); //기둥을 AnimatedTile로 바꿔 식는 애니메이션 적용
                 //그 후, AnimatedTile에 Flags속성을 Loop Once로 주어 한번 애니메이션 실행 후 식은채로 남아있음
             }

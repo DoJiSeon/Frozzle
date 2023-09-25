@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: waterFreezing
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 7145ff50a4798a74094d86e063bc63cf, type: 3}
+  - {fileID: 21300000, guid: 60c5f6ee7b34dea43b77e0c714521f26, type: 3}
+  - {fileID: 21300000, guid: 813516fdc5228b74d8e261f6cbd871cf, type: 3}
+  - {fileID: 21300000, guid: 3c4f7044e9e0b404c87da63a5a7de9b0, type: 3}
+  - {fileID: 21300000, guid: da1378bc1cb32bc409fb514a5b1285c4, type: 3}
+  - {fileID: 21300000, guid: 57ed70d6e0908754eb9aecf1c07274ce, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 1

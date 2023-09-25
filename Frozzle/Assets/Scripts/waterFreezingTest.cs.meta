@@ -3,7 +3,11 @@ guid: fb03a90d7cfb2324990703e01e839fdf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tilemap: {instanceID: 0}
+  - tilebase: {fileID: 11400000, guid: 8863b3916e442424193cd4c200d56909, type: 2}
+  - player: {fileID: 3516131821746168802, guid: 6d67291f49e0f2244a71843c15afd351, type: 3}
+  - animator: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
