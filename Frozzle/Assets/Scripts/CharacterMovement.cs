@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰이는 스크립트
 {
+    public Grid grid;
     public Tilemap map; // 타일맵 변수
     MouseInput mouseInput;  // 마우스 인풋 클래스 변수
     [SerializeField] private float movementSpeed; // 움직이는 스피드
@@ -38,6 +39,13 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         flip_check = false; // 좌우 반전 할거냐?
         is_right = false; // 오른쪽 방향을 보고있냐?
 
+        Vector3 initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+        Vector3Int _targetCell = grid.WorldToCell(initialPosition);
+
+        // Snap the player to the center of the initial cell
+        Vector3 _targetPosition = grid.CellToWorld(_targetCell);
+
     }
 
     private void MouseClick()
@@ -47,11 +55,16 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         Vector3Int gridPosition = map.WorldToCell(mousePosition); // 그리드 상의 포지션으로 가져오기
         if (map.HasTile(gridPosition)) // 그리드 포지션에 타일이 있다면?
         {
-            destination = mousePosition; // 위치 값에 마우스 포지션 값 넣어주기
+            destination = map.WorldToCell(mousePosition); // 위치 값에 마우스 포지션 값 넣어주기
+            Debug.Log(destination);
         }
+        Vector3Int targetcell = grid.WorldToCell(mousePosition);
+        Vector3 targetpos = grid.CellToWorld(targetcell);
+        //destination = targetpos;
     }
     void Update()
     {
+
         if (Vector3.Distance(transform.position, destination) > 0.1f) // 마우스 위치와 현재 위치 사이의 거리가 0.1보다 크다면
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, movementSpeed * Time.deltaTime); // 그 위치로 이동
@@ -62,20 +75,20 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
             is_walk = true; // 한번 걷고 있따 트루 해주고
             stop_walking(); // 메소드 한번 실행해주고
             is_walk = false; // 걷고있다 변수를 폴스로 바꿔주기
-            if(flip_check == true) // 반대로 좌우반전 해줘야하는 지? 트루라면
+            if (flip_check == true) // 반대로 좌우반전 해줘야하는 지? 트루라면
             {
                 rend.flipX = true; // 좌우반전해주고
                 is_move = false; // 움직이기 중단
             }
         }
-        
+
     }
     void stop_walking()
     {
         animator.SetBool("walk", false); // 애니메이터ㅓ의 walk 변수를 폴스로 바꿔주기
     }
 
-    void find() 
+    void find()
     {
         targetPos_rot = new Vector3(destination.x, destination.y, 0); // 마우스 x,y 좌표 값을 타겟 포스 변수에 넣어주기, z값은 2d 니까 0!
         Vector3 dir_rot = targetPos_rot - transform.position; // 마우스에서 현재 포지션 값을 빼서 위치 값 구하기, 포지션엔 위치, 방향 등 다양한 정보 담고 있어
@@ -88,7 +101,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
             {
                 rend.flipX = false; // 이미 오른쪽 애니메이터를 넣어둬서 뒤집을 필요가 없기 때문에 폴스
 
-                animator.SetBool("walk", true); 
+                animator.SetBool("walk", true);
                 animator.SetBool("right", true);
                 animator.SetBool("up", true);
                 is_right = true;
