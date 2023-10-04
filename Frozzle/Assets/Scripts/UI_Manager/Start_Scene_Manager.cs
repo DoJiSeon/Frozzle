@@ -11,4 +11,8 @@ public class Start_Scene_Manager : MonoBehaviour
         // 2_PlayScene 불러오기 (씬 전환)
         SceneManager.LoadScene("N_StageChoose");
     }
+    public void GameExit() // 게임 종료 함수
+    {
+        Application.Quit();
+    }
 }
