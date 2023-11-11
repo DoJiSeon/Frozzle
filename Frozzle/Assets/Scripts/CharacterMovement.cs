@@ -39,12 +39,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         flip_check = false; // 좌우 반전 할거냐?
         is_right = false; // 오른쪽 방향을 보고있냐?
 
-        Vector3 initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-        Vector3Int _targetCell = grid.WorldToCell(initialPosition);
-
-        // Snap the player to the center of the initial cell
-        Vector3 _targetPosition = grid.CellToWorld(_targetCell);
 
     }
 
@@ -55,13 +50,32 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         Vector3Int gridPosition = map.WorldToCell(mousePosition); // 그리드 상의 포지션으로 가져오기
         if (map.HasTile(gridPosition)) // 그리드 포지션에 타일이 있다면?
         {
-            destination = map.WorldToCell(mousePosition); // 위치 값에 마우스 포지션 값 넣어주기
+            destination = mousePosition; // 위치 값에 마우스 포지션 값 넣어주기
             Debug.Log(destination);
         }
-        Vector3Int targetcell = grid.WorldToCell(mousePosition);
-        Vector3 targetpos = grid.CellToWorld(targetcell);
-        //destination = targetpos;
+        CastRay();
     }
+    void CastRay()
+    {
+        int layermask = 1 << LayerMask.NameToLayer("load");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+        // Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity,layermask)
+        RaycastHit2D hit2 = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("load"));
+        if (hit2.collider != null) // hit.collider != null
+        {
+            Debug.Log(hit.collider.gameObject.tag);
+            if (hit.collider.gameObject.tag == "map")
+            {
+                GameObject touchObj = hit2.transform.gameObject;
+                Vector3 touchpos = touchObj.transform.position;
+                destination = touchpos;
+            }
+            
+        }
+    }
+
+
     void Update()
     {
 
