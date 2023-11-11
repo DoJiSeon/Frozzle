@@ -1,6 +1,18 @@
 { "pid": 35942, "tid": -1, "ph": "M", "name": "process_name", "args": { "name": "netcorerun.dll" } },
 { "pid": 35942, "tid": -1, "ph": "M", "name": "process_sort_index", "args": { "sort_index": "-1" } },
 { "pid": 35942, "tid": 1, "ph": "M", "name": "thread_name", "args": { "name": "" } },
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+{ "pid": 35942, "tid": 1, "ts": 1699680124409185, "dur": 1063977, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1699680124411111, "dur": 234043, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1699680125311446, "dur": 7360, "ph": "X", "name": "OutputData.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1699680125318811, "dur": 154330, "ph": "X", "name": "Backend.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1699680125321861, "dur": 100084, "ph": "X", "name": "JsonToString", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1699680125488727, "dur": 2334, "ph": "X", "name": "", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1699680125487905, "dur": 3648, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+=======
+>>>>>>> Stashed changes
 { "pid": 35942, "tid": 1, "ts": 1696552095302207, "dur": 635744, "ph": "X", "name": "BuildProgram", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1696552095303116, "dur": 64373, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1696552095776981, "dur": 6453, "ph": "X", "name": "OutputData.Write", "args": {} },
@@ -8,3 +20,7 @@
 { "pid": 35942, "tid": 1, "ts": 1696552095785514, "dur": 114459, "ph": "X", "name": "JsonToString", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1696552095949977, "dur": 2203, "ph": "X", "name": "", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1696552095949185, "dur": 3386, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+<<<<<<< Updated upstream
+=======
+>>>>>>> 0b014ae9a38894b868c5511e019651925e62f043
+>>>>>>> Stashed changes

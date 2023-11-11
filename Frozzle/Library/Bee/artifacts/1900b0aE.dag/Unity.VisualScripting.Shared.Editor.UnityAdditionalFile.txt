@@ -1,1 +1,9 @@
+<<<<<<< Updated upstream
 C:\Users\dojiseon\Desktop\vscode\termproject\Frozzle_1\Frozzle
+=======
+<<<<<<< HEAD
+C:\Github\Frozzle_1\Frozzle
+=======
+C:\Users\dojiseon\Desktop\vscode\termproject\Frozzle_1\Frozzle
+>>>>>>> 0b014ae9a38894b868c5511e019651925e62f043
+>>>>>>> Stashed changes
