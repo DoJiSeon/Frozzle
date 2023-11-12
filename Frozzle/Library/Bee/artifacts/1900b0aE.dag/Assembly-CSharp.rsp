@@ -392,8 +392,6 @@
 "Assets/Scripts/UI_Manager/Level_Lock.cs"
 "Assets/Scripts/UI_Manager/Move_To_NextLevel.cs"
 "Assets/Scripts/UI_Manager/N_StageChoose.cs"
-"Assets/Scripts/UI_Manager/Setting_Manager.cs"
-"Assets/Scripts/UI_Manager/SoundManager.cs"
 "Assets/Scripts/UI_Manager/Stage_Scene_Manager_1.cs"
 "Assets/Scripts/UI_Manager/Stage_Scene_Manager_2.cs"
 "Assets/Scripts/UI_Manager/Stage_Scene_Manager_3.cs"
