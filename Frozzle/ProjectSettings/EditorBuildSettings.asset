@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Stage_1-3(1).unity
     guid: f6c7c2413b4f6c646b5a3547aa74b946
+  - enabled: 1
+    path: Assets/Scenes/PlayerMoveTester.unity
+    guid: 4e7f961520e82e844915b9921e0a86f2
   m_configObjects: {}

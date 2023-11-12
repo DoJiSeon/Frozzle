@@ -57,3 +57,6 @@ TagManager:
   - name: PLAYER
     uniqueID: 165743029
     locked: 0
+  - name: lens
+    uniqueID: 2227194109
+    locked: 0

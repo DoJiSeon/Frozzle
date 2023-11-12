@@ -97,6 +97,24 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "top1")
+        {
+            Debug.Log("탑과 부딫혔다 으앙 ><");
+            PlayerManager.Instance.check_collide_top();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "top1")
+        {
+            Debug.Log("탑에서 나갈랭 ><");
+            PlayerManager.Instance.check_collide_top();
+        }
+    }
+
     void stop_walking()
     {
         animator.SetBool("walk", false); // 애니메이터ㅓ의 walk 변수를 폴스로 바꿔주기
