@@ -20,10 +20,12 @@ public class ice_attack : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Z))//Z키를 누른 경우
         {
-            newBullet = Instantiate(bullet,pos.position,transform.rotation);// 총알을 pos 위치에 생성->현재 객체의 회전을 사용해 발사
-            Destroy(newBullet, 2f ); // 총알 2초 후에 파괴됨
-        }
-        curtime=cooltime;//현재 쿨타임을 설정된 쿨타임 값으로 초기화
+           Vector3 platerDirection =  transform.forward; // player의 현재 방향을 얻어서 그 방향으로 회전값을 만듦-> 그방향으로 총알 발사
+            Quanternion playerRotation = Quaternion.LookRotation(platerDirection); 
+
+            GameObject newBullet = Instantiate(bullet, pos.position, platerRotation); // 발사 위치(pos.position)와 방향(playerRotation)으로 총알을 발사
+
+           curtime=cooltime;//현재 쿨타임을 설정된 쿨타임 값으로 초기화
         }
         curtime-= Time.deltaTime;
     }

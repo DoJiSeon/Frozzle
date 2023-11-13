@@ -274,7 +274,7 @@ MonoBehaviour:
   talkText: {fileID: 0}
   scanObject: {fileID: 0}
   menuSet: {fileID: 2016091520}
-  player: {fileID: 0}
+  player: {fileID: 772005380}
 --- !u!114 &478343031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,7 +304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &484609405
 Grid:
   m_ObjectHideFlags: 0
@@ -3578,6 +3578,7 @@ MonoBehaviour:
   bullet: {fileID: 5275663812892508246}
   pos: {fileID: 1991389488}
   cooltime: 0.3
+  newBullet: {fileID: 0}
 --- !u!114 &7852057393269555061
 MonoBehaviour:
   m_ObjectHideFlags: 0
