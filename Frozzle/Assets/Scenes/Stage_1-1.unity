@@ -2375,6 +2375,7 @@ GameObject:
   - component: {fileID: 2063653029}
   - component: {fileID: 2063653031}
   - component: {fileID: 2063653032}
+  - component: {fileID: 2063653033}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: map
@@ -3418,6 +3419,24 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 2063653025}
+--- !u!114 &2063653033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063653025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ee4a6ad20e21445acae6eb00412ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
+  tilebase: {fileID: 11400000, guid: e363e059d292e3b43a897bfc0efeed11, type: 2}
+  player: {fileID: 0}
+  currentPos: {x: 0, y: 0, z: 0}
+  animator: {fileID: 0}
+  edgeCollider: {fileID: 0}
 --- !u!1001 &5275663812892508244
 PrefabInstance:
   m_ObjectHideFlags: 0

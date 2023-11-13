@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: icefallTop
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 5e9889bba255b6e479b7a24fe139a4b8, type: 3}
+  - {fileID: 21300000, guid: 0486c3a1489f92b4aac255082946e8b4, type: 3}
+  - {fileID: 21300000, guid: 78b6cddf35889f241b334e8e40946a3c, type: 3}
+  - {fileID: 21300000, guid: 32535c6e7a2e5e948a003cf93ecae964, type: 3}
+  - {fileID: 21300000, guid: 8f5885f8d1057484b9c70fe748d88991, type: 3}
+  - {fileID: 21300000, guid: 7f98f38a5e16e57468fb60d5f73160b2, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
