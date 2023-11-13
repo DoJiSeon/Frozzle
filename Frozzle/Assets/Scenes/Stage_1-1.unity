@@ -3473,7 +3473,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6206224388206026437, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5275663812892508248}
   m_SourcePrefab: {fileID: 100100000, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
 --- !u!4 &5275663812892508245 stripped
 Transform:
@@ -3485,6 +3488,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6206224388206026437, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
   m_PrefabInstance: {fileID: 5275663812892508244}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5275663812892508248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275663812892508246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b913fe3f00cb8d47b225c07cfba2169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  distance: 0.5
+  isLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &7852057393269555058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3579,6 +3599,7 @@ MonoBehaviour:
   pos: {fileID: 1991389488}
   cooltime: 0.3
   newBullet: {fileID: 0}
+  playerDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &7852057393269555061
 MonoBehaviour:
   m_ObjectHideFlags: 0

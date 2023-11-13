@@ -24,9 +24,12 @@ public class IceBullet : MonoBehaviour
 
     void MoveBullet()
     {
+        Debug.Log("hello");
         Vector3 direction = playerTransform.position - transform.position; // player가 향하고 있는 방향을 구하고 그 방향으로 불렛이 이동
+        Debug.Log(direction);
         direction.Normalize(); // 방향 정규화 -> 모든 방향의 벡터 길이 1로 만듦 -> 방향에 따른 이동 속도 같아지기 위해서
         float moveDirection = transform.rotation.eulerAngles.y == 0f ? 1f : -1f;
+        //Debug.Log((direction, moveDirection));
         transform.Translate( direction * moveDirection * speed * Time.deltaTime);
     }
 
@@ -41,7 +44,7 @@ public class IceBullet : MonoBehaviour
         
         if (isLayer == (isLayer | (1 << other.gameObject.layer))) // 충돌한 객체의 Layer가 isLayer에 해당하는지 확인
         {
-            Destroy(gameObject);  // 총알 파괴
+            DestroyBullet();  // 총알 파괴
         }
     }
 }
