@@ -1,44 +1,41 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class IceBullet : MonoBehaviour
 {
-    public float speed;
-    public float distance=0.5f;
-    
-    public LayerMask isLayer;
-    // Start is called before the first frame update
+    public float speed = 10f; // 총알 속도 변수
+    public float distance = 0.5f; // 감지할 최대 거리 나타내는 변수, 기본값 0.5f
+    public LayerMask isLayer; 
+
     void Start()
     {
-        Invoke("DestroyBullet",2);
+        Invoke("DestroyBullet", 2);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        RaycastHit2D ray = Physics2D.Raycast (transform.position, transform.right, distance, isLayer);
-        if(ray.collider != null)
-        {
-            if(ray.collider.tag == "Water")
-            {
-                Debug.Log("Freezing!!!");
-            }
-            DestroyBullet();
-        }
-        if(transform.rotation.y == 0)
-        {
-            transform.Translate(transform.right * speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(transform.right * -1 * speed * Time.deltaTime);
-        }
-        
+        MoveBullet();
+    }
+
+    void MoveBullet()
+    {
+        float moveDirection = transform.rotation.eulerAngles.y == 0f ? 1f : -1f;
+        transform.Translate(Vector3.right * moveDirection * speed * Time.deltaTime);
     }
 
     void DestroyBullet()
     {
-        DestroyBullet();//파괴할 오브젝트
+        Destroy(gameObject); // 총알 오브젝트를 파괴
+    } // 다른 Collider와 충돌했을 때 호출되는 메서드
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        if (isLayer == (isLayer | (1 << other.gameObject.layer))) // 충돌한 객체의 Layer가 isLayer에 해당하는지 확인
+        {
+            Destroy(gameObject);  // 총알 파괴
+        }
     }
 }
