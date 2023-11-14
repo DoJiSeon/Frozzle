@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class go_to_tester : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void OnClickStart()
+    public void OnClickStart_s()
     {
         SceneManager.LoadScene("PlayerMoveTester");
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰이는 스크립트
 {
@@ -71,7 +72,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
                 Vector3 touchpos = touchObj.transform.position;
                 destination = touchpos;
             }
-            
+
         }
     }
 
@@ -100,10 +101,29 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "top1")
+        if (collision.gameObject.name == "top1")
         {
             Debug.Log("탑과 부딫혔다 으앙 ><");
             PlayerManager.Instance.check_collide_top();
+        }
+        else if (collision.gameObject.name == "paper1")
+        {
+            PlayerPrefs.SetInt("clear_stage", 1);
+            SceneManager.LoadScene("N_StageChoose");
+            //int clear_stage = PlayerPrefs.GetInt("clear_stage");
+            //Debug.Log(clear_stage);
+        }
+        else if (collision.gameObject.name == "paper2")
+        {
+            PlayerPrefs.SetInt("clear_stage", 2);
+            SceneManager.LoadScene("N_StageChoose");
+
+        }
+        else if (collision.gameObject.name == "paper3")
+        {
+            PlayerPrefs.SetInt("clear_stage", 3);
+            SceneManager.LoadScene("N_StageChoose");
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
