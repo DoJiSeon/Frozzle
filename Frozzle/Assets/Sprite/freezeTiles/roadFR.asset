@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: roadFR
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 00dacf06a3f0a6b4fbb18e96a24d099f, type: 3}
+  - {fileID: 21300000, guid: 0071d1da49f0e4c488fe98110d1bb8e5, type: 3}
+  - {fileID: 21300000, guid: 461987131e44a3141b0aa71ab521c019, type: 3}
+  - {fileID: 21300000, guid: b51f8cb80da935e4cab42d40fcb10ce2, type: 3}
+  - {fileID: 21300000, guid: bc0e798b559427349881db59587568b5, type: 3}
+  - {fileID: 21300000, guid: 1bbf222e99c32694d93681ea7af757ae, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 1

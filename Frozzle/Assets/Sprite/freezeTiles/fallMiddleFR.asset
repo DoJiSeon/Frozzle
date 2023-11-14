@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: fallMiddleFR
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 0f77d0f195258394ab8ad56a87504163, type: 3}
+  - {fileID: 21300000, guid: a86f4eb735c1d7b4994c25a01abec75c, type: 3}
+  - {fileID: 21300000, guid: 8125a307a75701548b9878be2e389dd6, type: 3}
+  - {fileID: 21300000, guid: bce6eae6b178ef84cb49d0f4f74a003c, type: 3}
+  - {fileID: 21300000, guid: edbddddb6b07dde44ab1257edbd6e4ce, type: 3}
+  - {fileID: 21300000, guid: 7e01b1bb4ed07c74ea58ab22b2e3ac4c, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 1
