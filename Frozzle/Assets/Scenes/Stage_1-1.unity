@@ -2972,7 +2972,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!1001 &5275663812892508244
+--- !u!1001 &6500573639945168067
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2998,15 +2998,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 668838164955534425, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 668838164955534425, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 668838164955534425, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 668838164955534425, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3030,25 +3030,25 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6206224388206026437, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5275663812892508248}
+      addedObject: {fileID: 6500573639945168070}
   m_SourcePrefab: {fileID: 100100000, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
---- !u!4 &5275663812892508245 stripped
+--- !u!4 &6500573639945168068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 668838164955534425, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
-  m_PrefabInstance: {fileID: 5275663812892508244}
+  m_PrefabInstance: {fileID: 6500573639945168067}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5275663812892508246 stripped
+--- !u!1 &6500573639945168069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6206224388206026437, guid: 3312ef5b33bbcc648958398cd855bb35, type: 3}
-  m_PrefabInstance: {fileID: 5275663812892508244}
+  m_PrefabInstance: {fileID: 6500573639945168067}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5275663812892508248
+--- !u!114 &6500573639945168070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275663812892508246}
+  m_GameObject: {fileID: 6500573639945168069}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b913fe3f00cb8d47b225c07cfba2169, type: 3}
@@ -3132,7 +3132,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1589881659186507117, guid: 6d67291f49e0f2244a71843c15afd351, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5275663812892508245}
+      addedObject: {fileID: 6500573639945168068}
     - targetCorrespondingSourceObject: {fileID: 1589881659186507117, guid: 6d67291f49e0f2244a71843c15afd351, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1991389488}
@@ -3161,11 +3161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b54df2b56d576439e0ac4bac39beff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5275663812892508246}
+  bullet: {fileID: 6500573639945168069}
   pos: {fileID: 1991389488}
   cooltime: 0.3
-  newBullet: {fileID: 0}
-  playerDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &7852057393269555061
 MonoBehaviour:
   m_ObjectHideFlags: 0
