@@ -390,6 +390,7 @@
 "Assets/Scripts/PlayerManager.cs"
 "Assets/Scripts/playerpos.cs"
 "Assets/Scripts/pollTest.cs"
+"Assets/Scripts/talkManager.cs"
 "Assets/Scripts/tilechooseTester.cs"
 "Assets/Scripts/UI_Manager/go_to_tester.cs"
 "Assets/Scripts/UI_Manager/Level_Lock.cs"
