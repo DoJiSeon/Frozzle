@@ -17,6 +17,7 @@ public class preTutorial : MonoBehaviour
     int clickCount = 0;
     float fadeCount = 1.0f;
     bool isClickable = true;
+    bool autoStart = false;
 
     IEnumerator seq;
     IEnumerator skip_seq;
@@ -32,8 +33,9 @@ public class preTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || autoStart)
         {
+            autoStart = false;
             if (clickCount == 0 && isClickable)
             {
                 talkPanel.SetActive(true);
@@ -112,9 +114,11 @@ public class preTutorial : MonoBehaviour
         while (fadeCount > 0)
         {
             fadeCount -= 0.05f;
-            yield return new WaitForSeconds(0.0001f);
+            yield return new WaitForSeconds(0.01f);
             fader.color = new Color(0, 0, 0, fadeCount);
         }
+        yield return new WaitForSeconds(0.5f);
+        autoStart = true;
         isClickable = true;
     }
 
@@ -124,7 +128,7 @@ public class preTutorial : MonoBehaviour
         while (fadeCount < 1.0f)
         {
             fadeCount += 0.05f;
-            yield return new WaitForSeconds(0.0001f);
+            yield return new WaitForSeconds(0.01f);
             fader.color = new Color(0, 0, 0, fadeCount);
         }
         isClickable = true;

@@ -392,6 +392,7 @@
 "Assets/Scripts/pollTest.cs"
 "Assets/Scripts/talkScript/preTutorial.cs"
 "Assets/Scripts/talkScript/talkManager.cs"
+"Assets/Scripts/talkScript/tutorialTalk.cs"
 "Assets/Scripts/tilechooseTester.cs"
 "Assets/Scripts/UI_Manager/go_to_tester.cs"
 "Assets/Scripts/UI_Manager/Level_Lock.cs"
