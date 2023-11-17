@@ -9,7 +9,7 @@ public class Start_Scene_Manager : MonoBehaviour
     public void OnClickStart()
     {
         // 2_PlayScene 불러오기 (씬 전환)
-        SceneManager.LoadScene("N_StageChoose");
+        SceneManager.LoadScene("preTutorial");
     }
     public void GameExit() // 게임 종료 함수
     {
