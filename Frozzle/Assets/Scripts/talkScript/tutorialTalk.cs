@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
+using System;
 
 public class tutorialTalk : MonoBehaviour
 {
@@ -13,11 +15,19 @@ public class tutorialTalk : MonoBehaviour
     public GameObject nameTag;
     public TextMeshProUGUI nameTagInnerText;
     public Image fader;
+    public GameObject calium;
+    public GameObject player;
+    public Animator playerAnim;
+    public Animator caliumAnim;
+    public SpriteRenderer caliumRend;
+    public Tilemap tilemap;
+    public bool isFlip;
     public List<string> textList = new List<string>();
     int clickCount = 0;
     float fadeCount = 1.0f;
     bool isClickable = true;
     bool autoStart = false;
+    bool isEverReached = false;
 
     IEnumerator seq;
     IEnumerator skip_seq;
@@ -25,6 +35,7 @@ public class tutorialTalk : MonoBehaviour
     public float delay;
     void Start()
     {
+        player.GetComponent<CharacterMovement>().enabled = false;
         talkPanel.SetActive(false);
         nameTag.SetActive(false);
         StartCoroutine(fadeIn());
@@ -33,7 +44,9 @@ public class tutorialTalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || autoStart)
+        Vector3 playerTargetPosition = tilemap.GetCellCenterWorld(Vector3Int.FloorToInt(player.transform.position));
+        Debug.Log(playerTargetPosition.x);
+        if (Input.GetMouseButtonDown(0) || autoStart || (playerTargetPosition.x >= 3 && !isEverReached))
         {
             autoStart = false;
             if (clickCount == 0 && isClickable)
@@ -146,10 +159,119 @@ public class tutorialTalk : MonoBehaviour
             else if (clickCount == 13 && isClickable)
             {
                 talkPanel.SetActive(true);
-                nameTagInnerText.text = "¸»ÇÏ´Â °í¾çÀÌ";
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                caliumAnim.SetBool("copterInitiate", true);
+                StartCoroutine(moveCalium(new Vector3Int(24, -1, 1), 1f));
                 seq = sentenceSequence(textList[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;
+            }
+            else if (!isEverReached && playerTargetPosition.x >= 3)
+            {
+                player.GetComponent<CharacterMovement>().enabled = false;
+                playerAnim.SetBool("walk", false);
+                isEverReached = true;
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 15 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 16 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(false);
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 17 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò ";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 18 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 19 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 20 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(false);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 21 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "ÄÝµå";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 22 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "ÄÝµå";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 23 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 24 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 25 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTagInnerText.text = "ÄÝµå";
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount > 25 && isClickable)
+            {
+                player.GetComponent<CharacterMovement>().enabled = true;
+                talkPanel.SetActive(false);
             }
         }
     }
@@ -183,7 +305,7 @@ public class tutorialTalk : MonoBehaviour
         isClickable = false;
         while (fadeCount > 0)
         {
-            fadeCount -= 0.05f;
+            fadeCount -= 0.01f;
             yield return new WaitForSeconds(0.01f);
             fader.color = new Color(0, 0, 0, fadeCount);
         }
@@ -208,6 +330,25 @@ public class tutorialTalk : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(nextScene);
+    }
+
+    IEnumerator moveCalium(Vector3Int caliumPosition, float delay_)
+    {
+        isClickable = false;
+        int movementSpeed = 2;
+        yield return new WaitForSeconds(delay_);
+        Debug.Log(caliumPosition);
+        Vector3 caliumTargetPosition = tilemap.GetCellCenterWorld(caliumPosition); // ¸ñÇ¥ À§Ä¡¸¦ World ÁÂÇ¥·Î º¯È¯
+        while (Vector3.Distance(calium.transform.position, caliumTargetPosition) > 0.01f)
+        {
+            calium.transform.position = Vector3.MoveTowards(calium.transform.position, caliumTargetPosition, movementSpeed * Time.deltaTime);
+            yield return null;
+        }
+        isClickable = true;
+        player.GetComponent<CharacterMovement>().enabled = true;
+        talkPanel.SetActive(false);
+        caliumAnim.SetBool("copterEnd", true);
+        caliumAnim.SetBool("copterInitiate", false);
     }
 
 }

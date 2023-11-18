@@ -383,6 +383,7 @@
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/characterMove.cs"
 "Assets/Scripts/CharacterMovement.cs"
+"Assets/Scripts/enterLevelChoose.cs"
 "Assets/Scripts/Freeze.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/lens.cs"
