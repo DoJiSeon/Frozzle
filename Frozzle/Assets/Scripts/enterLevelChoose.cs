@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class enterLevelChoose : MonoBehaviour
 {
@@ -11,23 +12,25 @@ public class enterLevelChoose : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject nameTag;
     public TextMeshProUGUI nameTagInnerText;
-    public Image fader;
+    public TextMeshProUGUI key;
     public GameObject player;
+
+    private RectTransform rectTransform;
+
+    IEnumerator seq;
+    IEnumerator skip_seq;
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3Int playerPosition = Vector3Int.FloorToInt(player.transform.position);
-        if (playerPosition == new Vector3Int(11, 6, 0))
+        if (playerPosition == new Vector3Int(11, 6, 0) && Input.GetKeyDown(KeyCode.G))
         {
-            Debug.Log("들어가시겠습니까?");
-            if (Input.GetKeyDown(KeyCode.G)) {
-                Debug.Log("들어가는 중...");
-            }
+            Debug.Log("다음");
         }
     }
 }

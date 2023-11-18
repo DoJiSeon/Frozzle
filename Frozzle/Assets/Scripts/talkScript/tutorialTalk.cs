@@ -14,6 +14,8 @@ public class tutorialTalk : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject nameTag;
     public TextMeshProUGUI nameTagInnerText;
+    public TextMeshProUGUI pressG;
+    public Image pressGWrapper;
     public Image fader;
     public GameObject calium;
     public GameObject player;
@@ -35,6 +37,8 @@ public class tutorialTalk : MonoBehaviour
     public float delay;
     void Start()
     {
+        pressG.enabled = false;
+        pressGWrapper.enabled = false;
         player.GetComponent<CharacterMovement>().enabled = false;
         talkPanel.SetActive(false);
         nameTag.SetActive(false);
@@ -45,7 +49,7 @@ public class tutorialTalk : MonoBehaviour
     void Update()
     {
         Vector3 playerTargetPosition = tilemap.GetCellCenterWorld(Vector3Int.FloorToInt(player.transform.position));
-        Debug.Log(playerTargetPosition.x);
+        Vector3Int playerPosition = Vector3Int.FloorToInt(player.transform.position);
         if (Input.GetMouseButtonDown(0) || autoStart || (playerTargetPosition.x >= 3 && !isEverReached))
         {
             autoStart = false;
@@ -171,6 +175,8 @@ public class tutorialTalk : MonoBehaviour
                 player.GetComponent<CharacterMovement>().enabled = false;
                 playerAnim.SetBool("walk", false);
                 isEverReached = true;
+                pressG.enabled = false;
+                pressGWrapper.enabled = false;
                 talkPanel.SetActive(true);
                 nameTagInnerText.text = "칼리움";
                 seq = sentenceSequence(textList[clickCount]);
@@ -272,7 +278,19 @@ public class tutorialTalk : MonoBehaviour
             {
                 player.GetComponent<CharacterMovement>().enabled = true;
                 talkPanel.SetActive(false);
+                pressG.text = "G키를 눌러 고양이 신상 안으로 진입하세요.";
+                pressG.enabled = true;
+                pressGWrapper.enabled = true;
             }
+        }
+        if (playerPosition == new Vector3Int(11, 6, 0) && Input.GetKeyDown(KeyCode.G))
+        {
+            pressG.enabled = false;
+            pressGWrapper.enabled = false;
+            talkPanel.SetActive(true);
+            seq = sentenceSequence("으아아아아아아아아아아아아아악!");
+            StartCoroutine(seq);
+            StartCoroutine(nextFade());
         }
     }
 
@@ -332,12 +350,25 @@ public class tutorialTalk : MonoBehaviour
         SceneManager.LoadScene(nextScene);
     }
 
+    IEnumerator nextFade()
+    {
+        isClickable = false;
+        while (fadeCount < 1.0f)
+        {
+            fadeCount += 0.05f;
+            yield return new WaitForSeconds(0.01f);
+            fader.color = new Color(0, 0, 0, fadeCount);
+        }
+        isClickable = true;
+        StartCoroutine(nextScene("stageChoose"));
+
+    }
+
     IEnumerator moveCalium(Vector3Int caliumPosition, float delay_)
     {
         isClickable = false;
         int movementSpeed = 2;
         yield return new WaitForSeconds(delay_);
-        Debug.Log(caliumPosition);
         Vector3 caliumTargetPosition = tilemap.GetCellCenterWorld(caliumPosition); // 목표 위치를 World 좌표로 변환
         while (Vector3.Distance(calium.transform.position, caliumTargetPosition) > 0.01f)
         {
@@ -347,6 +378,9 @@ public class tutorialTalk : MonoBehaviour
         isClickable = true;
         player.GetComponent<CharacterMovement>().enabled = true;
         talkPanel.SetActive(false);
+        pressG.text = "마우스 우클릭으로 이동하여 칼리움에게 가세요.";
+        pressG.enabled = true;
+        pressGWrapper.enabled = true;
         caliumAnim.SetBool("copterEnd", true);
         caliumAnim.SetBool("copterInitiate", false);
     }

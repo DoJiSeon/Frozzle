@@ -113,7 +113,7 @@ public class preTutorial : MonoBehaviour
         isClickable = false;
         while (fadeCount > 0)
         {
-            fadeCount -= 0.05f;
+            fadeCount -= 0.01f;
             yield return new WaitForSeconds(0.01f);
             fader.color = new Color(0, 0, 0, fadeCount);
         }
@@ -127,8 +127,8 @@ public class preTutorial : MonoBehaviour
         isClickable = false;
         while (fadeCount < 1.0f)
         {
-            fadeCount += 0.05f;
-            yield return new WaitForSeconds(0.01f);
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.02f);
             fader.color = new Color(0, 0, 0, fadeCount);
         }
         isClickable = true;

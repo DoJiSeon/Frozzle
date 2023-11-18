@@ -35,10 +35,10 @@ public class Start_Scene_Manager : MonoBehaviour
         while (fadeCount < 1.0f)
         {
             fadeCount += 0.05f;
-            yield return new WaitForSeconds(0.0001f);
+            yield return new WaitForSeconds(0.01f);
             fader.color = new Color(0, 0, 0, fadeCount);
         }
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("preTutorial");
     }
 }
