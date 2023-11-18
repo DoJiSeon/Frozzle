@@ -297,13 +297,14 @@ public class tutorialTalk : MonoBehaviour
                 pressGWrapper.enabled = true;
             }
         }
-        if (Input.GetMouseButtonDown(0) || autoStart || (playerTargetPosition.x >= 3 && !isEverReached) && PlayerPrefs.GetInt("clear_stage") == 1)
+        if (Input.GetMouseButtonDown(0) || autoStart && PlayerPrefs.GetInt("clear_stage") == 1)
         {
+            autoStart = false;
             if (clickCount == 0 && isClickable)
             {
                 talkPanel.SetActive(true);
                 nameTag.SetActive(true);
-                nameTagInnerText.text = "칼리움";
+                nameTagInnerText.text = "콜드";
                 seq = sentenceSequence(TLASOC[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;
@@ -315,6 +316,37 @@ public class tutorialTalk : MonoBehaviour
                 seq = sentenceSequence(TLASOC[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;
+            }
+            else if (clickCount == 2 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASOC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 3 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(false);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASOC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 4 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(false);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASOC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if(clickCount > 4 && isClickable) {
+                player.GetComponent<CharacterMovement>().enabled = true;
+                talkPanel.SetActive(false);
             }
         }
 
@@ -342,7 +374,7 @@ public class tutorialTalk : MonoBehaviour
             if (PlayerPrefs.GetInt("enteredStage") == 1)
             {
                 PlayerPrefs.SetInt("enteredStage", 2);
-                seq = nextSentenceSequence("대체... 나한테... 무슨 일이 있었던거지...?", "Stage_1-2");
+                seq = nextSentenceSequence("대체 내가 들고있던 책은 무슨 내용이었을까?", "Stage_1-2");
                 StartCoroutine(seq);
             }
             else
