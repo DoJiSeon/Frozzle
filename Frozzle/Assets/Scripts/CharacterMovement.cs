@@ -109,20 +109,20 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         else if (collision.gameObject.name == "paper1")
         {
             PlayerPrefs.SetInt("clear_stage", 1);
-            SceneManager.LoadScene("N_StageChoose");
+            SceneManager.LoadScene("tutorial");
             //int clear_stage = PlayerPrefs.GetInt("clear_stage");
             //Debug.Log(clear_stage);
         }
         else if (collision.gameObject.name == "paper2")
         {
             PlayerPrefs.SetInt("clear_stage", 2);
-            SceneManager.LoadScene("N_StageChoose");
+            SceneManager.LoadScene("tutorial");
 
         }
         else if (collision.gameObject.name == "paper3")
         {
             PlayerPrefs.SetInt("clear_stage", 3);
-            SceneManager.LoadScene("N_StageChoose");
+            SceneManager.LoadScene("tutorial");
 
         }
     }

@@ -25,6 +25,8 @@ public class tutorialTalk : MonoBehaviour
     public Tilemap tilemap;
     public bool isFlip;
     public List<string> textList = new List<string>();
+    public List<string> TLASOC = new List<string>();
+    public List<string> TLASTC = new List<string>();
     int clickCount = 0;
     float fadeCount = 1.0f;
     bool isClickable = true;
@@ -37,12 +39,24 @@ public class tutorialTalk : MonoBehaviour
     public float delay;
     void Start()
     {
+        clickCount = 0;
         pressG.enabled = false;
         pressGWrapper.enabled = false;
         player.GetComponent<CharacterMovement>().enabled = false;
         talkPanel.SetActive(false);
         nameTag.SetActive(false);
         StartCoroutine(fadeIn());
+        if (PlayerPrefs.GetInt("clear_stage") == 1 || PlayerPrefs.GetInt("enteredStage") == 1)
+        {
+            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(23, 0, 0)); ;
+        } else if (PlayerPrefs.GetInt("clear_stage") == 2 || PlayerPrefs.GetInt("enteredStage") == 2)
+        {
+            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(25, 0, 0)); ;
+        }
+        else if (PlayerPrefs.GetInt("clear_stage") == 3 || PlayerPrefs.GetInt("enteredStage") == 3)
+        {
+            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(27, 0, 0)); ;
+        }
     }
 
     // Update is called once per frame
@@ -50,7 +64,7 @@ public class tutorialTalk : MonoBehaviour
     {
         Vector3 playerTargetPosition = tilemap.GetCellCenterWorld(Vector3Int.FloorToInt(player.transform.position));
         Vector3Int playerPosition = Vector3Int.FloorToInt(player.transform.position);
-        if (Input.GetMouseButtonDown(0) || autoStart || (playerTargetPosition.x >= 3 && !isEverReached))
+        if ((Input.GetMouseButtonDown(0) || autoStart || (playerTargetPosition.x >= 3 && !isEverReached)) && PlayerPrefs.GetInt("clear_stage") == 0)
         {
             autoStart = false;
             if (clickCount == 0 && isClickable)
@@ -283,14 +297,75 @@ public class tutorialTalk : MonoBehaviour
                 pressGWrapper.enabled = true;
             }
         }
+        if (Input.GetMouseButtonDown(0) || autoStart || (playerTargetPosition.x >= 3 && !isEverReached) && PlayerPrefs.GetInt("clear_stage") == 1)
+        {
+            if (clickCount == 0 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASOC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            } else if (clickCount == 1 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASOC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+        }
+
+            Debug.Log(playerPosition);
         if (playerPosition == new Vector3Int(11, 6, 0) && Input.GetKeyDown(KeyCode.G))
         {
             pressG.enabled = false;
             pressGWrapper.enabled = false;
             talkPanel.SetActive(true);
-            seq = sentenceSequence("으아아아아아아아아아아아아아악!");
-            StartCoroutine(seq);
-            StartCoroutine(nextFade());
+            if (PlayerPrefs.GetInt("enteredStage") == 0)
+            {
+                PlayerPrefs.SetInt("enteredStage", 1);
+                seq = nextSentenceSequence("으아아아아아아아아아아아아아아아아아아아아아악!", "Stage_1-1");
+                StartCoroutine(seq);
+            } else
+            {
+                seq = nextSentenceSequence("스테이지 1-1에 진입합니다.", "Stage_1-1");
+                StartCoroutine(seq);
+            }
+        } else if (playerPosition == new Vector3Int(12, 6, 0) && Input.GetKeyDown(KeyCode.G))
+        {
+            pressG.enabled = false;
+            pressGWrapper.enabled = false;
+            talkPanel.SetActive(true);
+            if (PlayerPrefs.GetInt("enteredStage") == 1)
+            {
+                PlayerPrefs.SetInt("enteredStage", 2);
+                seq = nextSentenceSequence("대체... 나한테... 무슨 일이 있었던거지...?", "Stage_1-2");
+                StartCoroutine(seq);
+            }
+            else
+            {
+                seq = nextSentenceSequence("스테이지 1-2에 진입합니다.", "Stage_1-2");
+                StartCoroutine(seq);
+            }
+        } else if (playerPosition == new Vector3Int(13, 7, 0) && Input.GetKeyDown(KeyCode.G))
+        {
+            pressG.enabled = false;
+            pressGWrapper.enabled = false;
+            talkPanel.SetActive(true);
+            if (PlayerPrefs.GetInt("stageThreeEntered") == 2)
+            {
+                PlayerPrefs.SetInt("enteredStage", 3);
+                seq = nextSentenceSequence("멜트린에 무슨 일이 일어났는지 알아야겠어!", "Stage_1-3");
+                StartCoroutine(seq);
+            }
+            else
+            {
+                seq = nextSentenceSequence("스테이지 1-3에 진입합니다.", "Stage_1-3");
+                StartCoroutine(seq);
+            }
         }
     }
 
@@ -309,6 +384,23 @@ public class tutorialTalk : MonoBehaviour
         isClickable = true;
     }
 
+    IEnumerator nextSentenceSequence(string text_, string nextStage)
+    {
+        skip_seq = nextSkipSequence(seq, text_, nextStage);
+        StartCoroutine(skip_seq);
+        isClickable = false;
+        text.text = "";
+        foreach (char letter in text_)
+        {
+            text.text += letter;
+            yield return new WaitForSeconds(delay);
+        }
+        StopCoroutine(skip_seq);
+        isClickable = true;
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        StartCoroutine(nextFade(nextStage));
+    }
+
     IEnumerator skipSequence(IEnumerator seq_, string text_)
     {
         yield return new WaitForSeconds(0.3f);
@@ -316,6 +408,17 @@ public class tutorialTalk : MonoBehaviour
         StopCoroutine(seq_);
         text.text = text_;
         isClickable = true;
+    }
+
+    IEnumerator nextSkipSequence(IEnumerator seq_, string text_, string nextStage)
+    {
+        yield return new WaitForSeconds(0.3f);
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        StopCoroutine(seq_);
+        text.text = text_;
+        isClickable = true;
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        StartCoroutine(nextFade(nextStage));
     }
 
     IEnumerator fadeIn()
@@ -344,13 +447,8 @@ public class tutorialTalk : MonoBehaviour
         isClickable = true;
     }
 
-    IEnumerator nextScene(string nextScene)
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(nextScene);
-    }
 
-    IEnumerator nextFade()
+    IEnumerator nextFade(string nextStage)
     {
         isClickable = false;
         while (fadeCount < 1.0f)
@@ -360,7 +458,7 @@ public class tutorialTalk : MonoBehaviour
             fader.color = new Color(0, 0, 0, fadeCount);
         }
         isClickable = true;
-        StartCoroutine(nextScene("stageChoose"));
+        SceneManager.LoadScene(nextStage);
 
     }
 
