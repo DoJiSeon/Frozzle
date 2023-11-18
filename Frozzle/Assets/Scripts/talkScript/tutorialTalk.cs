@@ -297,7 +297,7 @@ public class tutorialTalk : MonoBehaviour
                 pressGWrapper.enabled = true;
             }
         }
-        if (Input.GetMouseButtonDown(0) || autoStart && PlayerPrefs.GetInt("clear_stage") == 1)
+        if ((Input.GetMouseButtonDown(0) || autoStart) && PlayerPrefs.GetInt("clear_stage") == 1)
         {
             autoStart = false;
             if (clickCount == 0 && isClickable)
@@ -347,6 +347,49 @@ public class tutorialTalk : MonoBehaviour
             else if(clickCount > 4 && isClickable) {
                 player.GetComponent<CharacterMovement>().enabled = true;
                 talkPanel.SetActive(false);
+            }
+        }
+        if ((Input.GetMouseButtonDown(0) || autoStart) && PlayerPrefs.GetInt("clear_stage") == 2)
+        {
+            autoStart = false;
+            if (clickCount == 0 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            } else if (clickCount == 1 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(false);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 2 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 3 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(false);
+                nameTagInnerText.text = "Ä®¸®¿ò";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            } else if (clickCount > 3 && isClickable)
+            {
+                talkPanel.SetActive(false);
+                StartCoroutine(nextFade("memory"));
             }
         }
 

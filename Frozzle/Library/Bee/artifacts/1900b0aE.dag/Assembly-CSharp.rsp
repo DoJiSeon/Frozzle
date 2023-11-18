@@ -391,6 +391,7 @@
 "Assets/Scripts/PlayerManager.cs"
 "Assets/Scripts/playerpos.cs"
 "Assets/Scripts/pollTest.cs"
+"Assets/Scripts/talkScript/memoryTalk.cs"
 "Assets/Scripts/talkScript/preTutorial.cs"
 "Assets/Scripts/talkScript/talkManager.cs"
 "Assets/Scripts/talkScript/tutorialTalk.cs"
