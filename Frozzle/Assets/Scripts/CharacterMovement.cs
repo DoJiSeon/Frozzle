@@ -102,8 +102,8 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                //animator.SetTrigger("spell_t");
-                //spell();
+                animator.SetTrigger("spell_t");
+                spell();
             }
         }
 
@@ -147,7 +147,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
 
     void stop_walking()
     {
-        animator.SetBool("walk", false); // 애니메이터ㅓ의 walk 변수를 폴스로 바꿔주기
+        animator.SetBool("walk", false); // 애니메이터의 walk 변수를 폴스로 바꿔주기
     }
 
     void find()
