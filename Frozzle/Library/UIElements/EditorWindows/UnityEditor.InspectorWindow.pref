@@ -15,6 +15,12 @@ MonoBehaviour:
   m_Keys:
   - __PanelContainer__rootVisualContainer__inspector-window-main-scroll-view__unity-list-textList__UnityEngine.UIElements.ListView
   - __PanelContainer__rootVisualContainer__inspector-window-main-scroll-view__unity-list-imageList__UnityEngine.UIElements.ListView
+  - __PanelContainer__rootVisualContainer__inspector-window-main-scroll-view__unity-list-paperLocation__UnityEngine.UIElements.ListView
+  - __PanelContainer__rootVisualContainer__inspector-window-main-scroll-view__unity-list-TLASOC__UnityEngine.UIElements.ListView
+  - __PanelContainer__rootVisualContainer__inspector-window-main-scroll-view__unity-list-TLASTC__UnityEngine.UIElements.ListView
   m_Values:
-  - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":601.3331909179688},"firstVisibleIndex":27,"contentPadding":594.0,"contentHeight":1532.0,"anchoredItemIndex":27,"anchorOffset":7.33319091796875}}'
+  - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":187.33331298828126},"firstVisibleIndex":7,"contentPadding":177.3333282470703,"contentHeight":658.6666259765625,"anchoredItemIndex":7,"anchorOffset":9.999984741210938}}'
+  - '{}'
+  - '{}'
+  - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":0.0},"firstVisibleIndex":0,"contentPadding":0.0,"contentHeight":126.66667175292969,"anchoredItemIndex":0,"anchorOffset":0.0}}'
   - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":0.0},"firstVisibleIndex":0,"contentPadding":0.0,"contentHeight":0.0,"anchoredItemIndex":0,"anchorOffset":0.0}}'

@@ -39,6 +39,7 @@ public class tutorialTalk : MonoBehaviour
     public float delay;
     void Start()
     {
+        calium.SetActive(true);
         clickCount = 0;
         pressG.enabled = false;
         pressGWrapper.enabled = false;
@@ -48,14 +49,17 @@ public class tutorialTalk : MonoBehaviour
         StartCoroutine(fadeIn());
         if (PlayerPrefs.GetInt("clear_stage") == 1 || PlayerPrefs.GetInt("enteredStage") == 1)
         {
-            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(23, 0, 0)); ;
+            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(23, 0, 0));
+            calium.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(25, -1, 0));
         } else if (PlayerPrefs.GetInt("clear_stage") == 2 || PlayerPrefs.GetInt("enteredStage") == 2)
         {
-            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(25, 0, 0)); ;
+            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(25, 0, 0));
+            calium.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(27, -1, 0));
         }
         else if (PlayerPrefs.GetInt("clear_stage") == 3 || PlayerPrefs.GetInt("enteredStage") == 3)
         {
-            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(27, 0, 0)); ;
+            player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(27, 0, 0));
+            calium.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(29, -1, 0));
         }
     }
 
@@ -64,6 +68,7 @@ public class tutorialTalk : MonoBehaviour
     {
         Vector3 playerTargetPosition = tilemap.GetCellCenterWorld(Vector3Int.FloorToInt(player.transform.position));
         Vector3Int playerPosition = Vector3Int.FloorToInt(player.transform.position);
+        Debug.Log(playerTargetPosition.y);
         if ((Input.GetMouseButtonDown(0) || autoStart || (playerTargetPosition.x >= 3 && !isEverReached)) && PlayerPrefs.GetInt("clear_stage") == 0)
         {
             autoStart = false;
@@ -179,6 +184,7 @@ public class tutorialTalk : MonoBehaviour
                 talkPanel.SetActive(true);
                 nameTagInnerText.text = "칼리움";
                 caliumAnim.SetBool("copterInitiate", true);
+                caliumAnim.SetBool("copterEnd", false);
                 StartCoroutine(moveCalium(new Vector3Int(24, -1, 1), 1f));
                 seq = sentenceSequence(textList[clickCount]);
                 StartCoroutine(seq);
@@ -276,6 +282,10 @@ public class tutorialTalk : MonoBehaviour
             {
                 talkPanel.SetActive(true);
                 nameTagInnerText.text = "칼리움";
+                caliumAnim.SetBool("copterInitiate", true);
+                caliumAnim.SetBool("copterEnd", false);
+                caliumRend.flipX = true;
+                StartCoroutine(enterMoveCalium(new Vector3Int(23, 1, 0), 1f));
                 seq = sentenceSequence(textList[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;
@@ -401,7 +411,6 @@ public class tutorialTalk : MonoBehaviour
             talkPanel.SetActive(true);
             if (PlayerPrefs.GetInt("enteredStage") == 0)
             {
-                PlayerPrefs.SetInt("enteredStage", 1);
                 seq = nextSentenceSequence("으아아아아아아아아아아아아아아아아아아아아아악!", "Stage_1-1");
                 StartCoroutine(seq);
             } else
@@ -416,7 +425,6 @@ public class tutorialTalk : MonoBehaviour
             talkPanel.SetActive(true);
             if (PlayerPrefs.GetInt("enteredStage") == 1)
             {
-                PlayerPrefs.SetInt("enteredStage", 2);
                 seq = nextSentenceSequence("대체 내가 들고있던 책은 무슨 내용이었을까?", "Stage_1-2");
                 StartCoroutine(seq);
             }
@@ -432,7 +440,6 @@ public class tutorialTalk : MonoBehaviour
             talkPanel.SetActive(true);
             if (PlayerPrefs.GetInt("stageThreeEntered") == 2)
             {
-                PlayerPrefs.SetInt("enteredStage", 3);
                 seq = nextSentenceSequence("멜트린에 무슨 일이 일어났는지 알아야겠어!", "Stage_1-3");
                 StartCoroutine(seq);
             }
@@ -540,7 +547,7 @@ public class tutorialTalk : MonoBehaviour
     IEnumerator moveCalium(Vector3Int caliumPosition, float delay_)
     {
         isClickable = false;
-        int movementSpeed = 2;
+        int movementSpeed = 3;
         yield return new WaitForSeconds(delay_);
         Vector3 caliumTargetPosition = tilemap.GetCellCenterWorld(caliumPosition); // 목표 위치를 World 좌표로 변환
         while (Vector3.Distance(calium.transform.position, caliumTargetPosition) > 0.01f)
@@ -554,6 +561,23 @@ public class tutorialTalk : MonoBehaviour
         pressG.text = "마우스 우클릭으로 이동하여 칼리움에게 가세요.";
         pressG.enabled = true;
         pressGWrapper.enabled = true;
+        caliumAnim.SetBool("copterEnd", true);
+        caliumAnim.SetBool("copterInitiate", false);
+    }
+
+    IEnumerator enterMoveCalium(Vector3Int caliumPosition, float delay_)
+    {
+        isClickable = false;
+        int movementSpeed = 3;
+        yield return new WaitForSeconds(delay_);
+        Vector3 caliumTargetPosition = tilemap.GetCellCenterWorld(caliumPosition); // 목표 위치를 World 좌표로 변환
+        while (Vector3.Distance(calium.transform.position, caliumTargetPosition) > 0.01f)
+        {
+            calium.transform.position = Vector3.MoveTowards(calium.transform.position, caliumTargetPosition, movementSpeed * Time.deltaTime);
+            yield return null;
+        }
+        isClickable = true;
+        calium.SetActive(false);
         caliumAnim.SetBool("copterEnd", true);
         caliumAnim.SetBool("copterInitiate", false);
     }

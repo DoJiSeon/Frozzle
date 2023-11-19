@@ -116,25 +116,25 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
             Debug.Log("탑과 부딫혔다 으앙 ><");
             PlayerManager.Instance.check_collide_top();
         }
-        else if (collision.gameObject.name == "paper1")
-        {
-            PlayerPrefs.SetInt("clear_stage", 1);
-            SceneManager.LoadScene("tutorial");
-            //int clear_stage = PlayerPrefs.GetInt("clear_stage");
-            //Debug.Log(clear_stage);
-        }
-        else if (collision.gameObject.name == "paper2")
-        {
-            PlayerPrefs.SetInt("clear_stage", 2);
-            SceneManager.LoadScene("tutorial");
+        //else if (collision.gameObject.name == "paper1")
+        //{
+        //    PlayerPrefs.SetInt("clear_stage", 1);
+        //    SceneManager.LoadScene("tutorial");
+        //    //int clear_stage = PlayerPrefs.GetInt("clear_stage");
+        //    //Debug.Log(clear_stage);
+        //}
+        //else if (collision.gameObject.name == "paper2")
+        //{
+        //    PlayerPrefs.SetInt("clear_stage", 2);
+        //    SceneManager.LoadScene("tutorial");
 
-        }
-        else if (collision.gameObject.name == "paper3")
-        {
-            PlayerPrefs.SetInt("clear_stage", 3);
-            SceneManager.LoadScene("tutorial");
+        //}
+        //else if (collision.gameObject.name == "paper3")
+        //{
+        //    PlayerPrefs.SetInt("clear_stage", 3);
+        //    SceneManager.LoadScene("tutorial");
 
-        }
+        //}
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
