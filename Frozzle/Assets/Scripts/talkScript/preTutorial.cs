@@ -13,6 +13,7 @@ public class preTutorial : MonoBehaviour
     public GameObject nameTag;
     public TextMeshProUGUI nameTagInnerText;
     public Image fader;
+    public Image backG;
     public List<string> textList = new List<string>();
     int clickCount = 0;
     float fadeCount = 1.0f;
@@ -54,9 +55,9 @@ public class preTutorial : MonoBehaviour
             }
             else if(clickCount == 2 && isClickable)
             {
-                talkPanel.SetActive(true);
+                talkPanel.SetActive(false);
                 nameTag.SetActive(false);
-                seq = sentenceSequence(textList[clickCount]);
+                seq = fading();
                 StartCoroutine(seq);
                 clickCount++;
             }
@@ -66,7 +67,6 @@ public class preTutorial : MonoBehaviour
                 nameTag.SetActive(false);
                 seq = sentenceSequence(textList[clickCount]);
                 StartCoroutine(seq);
-                StartCoroutine(fadeOut());
                 clickCount++;
             }
             else if  (clickCount == 4 && isClickable)
@@ -76,7 +76,29 @@ public class preTutorial : MonoBehaviour
                 StartCoroutine(seq);
                 clickCount++;
             }
-            else if (clickCount >= 5 && isClickable)
+            else if (clickCount == 5 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 6 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                StartCoroutine(fadeOut());
+                clickCount++;
+            }
+            else if (clickCount == 7 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                seq = sentenceSequence(textList[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount >= 7 && isClickable)
             {
                 talkPanel.SetActive(false);
                 StartCoroutine(nextScene("tutorial"));
@@ -132,6 +154,28 @@ public class preTutorial : MonoBehaviour
             fader.color = new Color(0, 0, 0, fadeCount);
         }
         isClickable = true;
+    }
+
+    IEnumerator fading()
+    {
+        isClickable = false;
+        while (fadeCount < 1.0f)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.02f);
+            fader.color = new Color(0, 0, 0, fadeCount);
+        }
+        yield return new WaitForSeconds(1f);
+        backG.enabled = false;
+        while (fadeCount > 0)
+        {
+            fadeCount -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            fader.color = new Color(0, 0, 0, fadeCount);
+        }
+        yield return new WaitForSeconds(0.5f);
+        isClickable = true;
+        autoStart = true;
     }
 
     IEnumerator nextScene(string nextScene)

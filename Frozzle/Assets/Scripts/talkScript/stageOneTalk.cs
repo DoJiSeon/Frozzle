@@ -48,6 +48,7 @@ public class stageOneTalk : MonoBehaviour
     IEnumerator skip_seq;
     void Start()
     {
+        player.GetComponent<CharacterMovement>().enabled = false;
         talkPanel.SetActive(false);
         nameTag.SetActive(false);
         Debug.Log(PlayerPrefs.GetInt("enteredStage"));
@@ -68,7 +69,7 @@ public class stageOneTalk : MonoBehaviour
             if (Input.GetMouseButtonDown(0) || startAutoStart)
             {
                 startAutoStart = false;
-                if (startClickCount == 0) {
+                if (startClickCount == 0 && isClickable) {
                     talkPanel.SetActive(true);
                     nameTag.SetActive(true);
                     nameTagInnerText.text = "ÄÝµå";
@@ -431,5 +432,6 @@ public class stageOneTalk : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             stageLogo.color = new Color(255, 255, 255, stageFadeCount);
         }
+        player.GetComponent<CharacterMovement>().enabled = true;
     }
 }

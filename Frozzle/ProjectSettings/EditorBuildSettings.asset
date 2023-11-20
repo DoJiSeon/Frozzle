@@ -27,6 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage_1-3.unity
     guid: 98eec81e92fe54c4dbc7111e9a0f0710
   - enabled: 1
+    path: Assets/Scenes/memory.unity
+    guid: 943caddecaa363940b9430e886a4a8b6
+  - enabled: 1
+    path: Assets/Scenes/ending.unity
+    guid: 83de0dfd58ff0bc4d8e31bb4087fbc23
+  - enabled: 1
     path: Assets/Scenes/stageChoose.unity
     guid: cf2aed2ef48c99447b4652ff5d4bed53
   - enabled: 0
@@ -38,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerMoveTester.unity
     guid: 4e7f961520e82e844915b9921e0a86f2
+  - enabled: 1
+    path: Assets/Scenes/cutScene1-2.unity
+    guid: 75e39daddba30f147983bbe0268819d0
   m_configObjects: {}

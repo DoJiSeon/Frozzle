@@ -48,6 +48,7 @@ public class stageTwoTalk : MonoBehaviour
     IEnumerator skip_seq;
     void Start()
     {
+        player.GetComponent<CharacterMovement>().enabled = false;
         talkPanel.SetActive(false);
         nameTag.SetActive(false);
         Debug.Log(PlayerPrefs.GetInt("enteredStage"));
@@ -415,5 +416,6 @@ public class stageTwoTalk : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             stageLogo.color = new Color(255, 255, 255, stageFadeCount);
         }
+        player.GetComponent<CharacterMovement>().enabled = true;
     }
 }

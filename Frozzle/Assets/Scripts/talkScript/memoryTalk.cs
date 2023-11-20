@@ -641,6 +641,12 @@ public class memoryTalk : MonoBehaviour
                 StartCoroutine(seq);
                 clickCount++;
             }
+            else if (clickCount > 65 && isClickable)
+            {
+                talkPanel.SetActive(false);
+                PlayerPrefs.SetInt("memory", 1);
+                StartCoroutine(nextFade("tutorial"));
+            }
         }
     }
 

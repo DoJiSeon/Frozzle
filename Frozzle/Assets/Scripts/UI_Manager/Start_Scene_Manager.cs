@@ -15,6 +15,7 @@ public class Start_Scene_Manager : MonoBehaviour
         {
             fader.enabled = false;
         }
+        PlayerPrefs.SetInt("memory", 0);
         PlayerPrefs.SetInt("enteredStage", 0);
         PlayerPrefs.SetInt("clear_stage", 0);
 

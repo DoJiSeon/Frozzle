@@ -27,6 +27,7 @@ public class tutorialTalk : MonoBehaviour
     public List<string> textList = new List<string>();
     public List<string> TLASOC = new List<string>();
     public List<string> TLASTC = new List<string>();
+    public List<string> end = new List<string>();
     int clickCount = 0;
     float fadeCount = 1.0f;
     bool isClickable = true;
@@ -359,18 +360,19 @@ public class tutorialTalk : MonoBehaviour
                 talkPanel.SetActive(false);
             }
         }
-        if ((Input.GetMouseButtonDown(0) || autoStart) && PlayerPrefs.GetInt("clear_stage") == 2)
+        if ((Input.GetMouseButtonDown(0) || autoStart) && (PlayerPrefs.GetInt("clear_stage") == 2 && PlayerPrefs.GetInt("memory") == 0))
         {
             autoStart = false;
             if (clickCount == 0 && isClickable)
             {
                 talkPanel.SetActive(true);
                 nameTag.SetActive(true);
-                nameTagInnerText.text = "칼리움";
+                nameTagInnerText.text = "콜드";
                 seq = sentenceSequence(TLASTC[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;
-            } else if (clickCount == 1 && isClickable)
+            }
+            else if (clickCount == 1 && isClickable)
             {
                 talkPanel.SetActive(true);
                 nameTag.SetActive(false);
@@ -391,19 +393,138 @@ public class tutorialTalk : MonoBehaviour
             else if (clickCount == 3 && isClickable)
             {
                 talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "콜드";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 4 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 5 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 6 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "콜드";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 7 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 8 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "콜드";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 9 && isClickable)
+            {
+                talkPanel.SetActive(true);
                 nameTag.SetActive(false);
                 nameTagInnerText.text = "칼리움";
                 seq = sentenceSequence(TLASTC[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;
-            } else if (clickCount > 3 && isClickable)
+            }
+            else if (clickCount == 10 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(false);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(TLASTC[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount > 10 && isClickable)
             {
                 talkPanel.SetActive(false);
-                StartCoroutine(nextFade("memory"));
+                StartCoroutine(nextFade("cutScene1-2"));
             }
         }
+        if ((Input.GetMouseButtonDown(0) || autoStart) && (PlayerPrefs.GetInt("clear_stage") == 2 && PlayerPrefs.GetInt("memory") == 1))
+        {
+            autoStart = false;
+            if (clickCount == 0 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(end[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            } else if (clickCount == 1 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(end[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 2 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "콜드";
+                seq = sentenceSequence(end[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 3 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "칼리움";
+                seq = sentenceSequence(end[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount == 4 && isClickable)
+            {
+                talkPanel.SetActive(true);
+                nameTag.SetActive(true);
+                nameTagInnerText.text = "콜드";
+                seq = sentenceSequence(end[clickCount]);
+                StartCoroutine(seq);
+                clickCount++;
+            }
+            else if (clickCount > 4 && isClickable)
+            {
+                talkPanel.SetActive(false);
+                player.GetComponent<CharacterMovement>().enabled = true;
+            }
 
-            Debug.Log(playerPosition);
+
+        }
+
+        Debug.Log(playerPosition);
         if (playerPosition == new Vector3Int(11, 6, 0) && Input.GetKeyDown(KeyCode.G))
         {
             pressG.enabled = false;
@@ -423,7 +544,12 @@ public class tutorialTalk : MonoBehaviour
             pressG.enabled = false;
             pressGWrapper.enabled = false;
             talkPanel.SetActive(true);
-            if (PlayerPrefs.GetInt("enteredStage") == 1)
+            if (PlayerPrefs.GetInt("enteredStage") == 0)
+            {
+                seq = dontSentenceSequence("(만져도 아무 반응이 없다.)");
+                StartCoroutine(seq);
+            }
+            else if (PlayerPrefs.GetInt("enteredStage") == 1)
             {
                 seq = nextSentenceSequence("대체 내가 들고있던 책은 무슨 내용이었을까?", "Stage_1-2");
                 StartCoroutine(seq);
@@ -438,9 +564,14 @@ public class tutorialTalk : MonoBehaviour
             pressG.enabled = false;
             pressGWrapper.enabled = false;
             talkPanel.SetActive(true);
-            if (PlayerPrefs.GetInt("stageThreeEntered") == 2)
+            if (PlayerPrefs.GetInt("enteredStage") == 0 || PlayerPrefs.GetInt("enteredStage") == 1)
             {
-                seq = nextSentenceSequence("멜트린에 무슨 일이 일어났는지 알아야겠어!", "Stage_1-3");
+                seq = dontSentenceSequence("(만져도 아무 반응이 없다.)");
+                StartCoroutine(seq);
+            }
+            else if (PlayerPrefs.GetInt("enteredStage") == 2)
+            {
+                seq = nextSentenceSequence("...현실에서의 나는 어떻게...", "Stage_1-3");
                 StartCoroutine(seq);
             }
             else
@@ -464,6 +595,23 @@ public class tutorialTalk : MonoBehaviour
         }
         StopCoroutine(skip_seq);
         isClickable = true;
+    }
+
+    IEnumerator dontSentenceSequence(string text_)
+    {
+        skip_seq = skipSequence(seq, text_);
+        StartCoroutine(skip_seq);
+        isClickable = false;
+        text.text = "";
+        foreach (char letter in text_)
+        {
+            text.text += letter;
+            yield return new WaitForSeconds(delay);
+        }
+        StopCoroutine(skip_seq);
+        isClickable = true;
+        yield return new WaitForSeconds(0.5f);
+        talkPanel.SetActive(false);
     }
 
     IEnumerator nextSentenceSequence(string text_, string nextStage)
