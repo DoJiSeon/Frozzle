@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: fallTopFRM
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 123ee94f9b002fe428e359632929f4e1, type: 3}
+  - {fileID: 21300000, guid: 9ec5b6d3842cab2499153811f9c3987c, type: 3}
+  - {fileID: 21300000, guid: f00f8498f1cfac94ca93df5678361c64, type: 3}
+  - {fileID: 21300000, guid: d5922c2a03ab7bd489c9ff33de63d483, type: 3}
+  - {fileID: 21300000, guid: a025ed9e42058ff40912e95eddcdf963, type: 3}
+  - {fileID: 21300000, guid: c854a2b1038b8ce4c9815ac53f31c70f, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 1

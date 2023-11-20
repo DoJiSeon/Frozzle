@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: treeCornerFRM
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: 32ae114791632bb4f901166171c42b7b, type: 3}
+  - {fileID: 21300000, guid: ab0df195d6d43d348a7514685079193d, type: 3}
+  - {fileID: 21300000, guid: 28cf9d1256ac4a3408c32ab324d72928, type: 3}
+  - {fileID: 21300000, guid: a5e1f13e0036a7e469b542d6f9bfa8e0, type: 3}
+  - {fileID: 21300000, guid: e017b8f24757c3d4f95260b9fc571baf, type: 3}
+  - {fileID: 21300000, guid: 164a725e07ded9e43b80f82f28e9e7a4, type: 3}
+  m_MinSpeed: 10
+  m_MaxSpeed: 10
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 1
