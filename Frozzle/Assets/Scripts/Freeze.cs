@@ -12,11 +12,15 @@ public class Freeze : MonoBehaviour
     public List<TileBase> waterFalls = new List<TileBase>();
     public List<TileBase> pond = new List<TileBase>();
     public List<TileBase> bridge = new List<TileBase>();
+    public List<EdgeCollider2D> edge = new List<EdgeCollider2D>();
     private List<Vector3Int> startInteraction = new List<Vector3Int>();
+    private List<Vector3Int> pondInteraction = new List<Vector3Int>();
     private List<List<string>> decideInteraction = new List<List<string>>();
     private List<string> innerDecide = new List<string>();
     private List<List<Vector3Int>> doInteraction = new List<List<Vector3Int>>();
     private List<Vector3Int> innerDo = new List<Vector3Int>();
+
+    bool hasLens = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +58,57 @@ public class Freeze : MonoBehaviour
         innerDo.Add(new Vector3Int(10, 4, 0));
         innerDo.Add(new Vector3Int(11, 5, 0));
         innerDo.Add(new Vector3Int(12, 6, 0));
+        decideInteraction.Add(new List<string>(innerDecide));
+        doInteraction.Add(new List<Vector3Int>(innerDo));
+        innerDecide.Clear();
+        innerDo.Clear();
+        startInteraction.Add(new Vector3Int(11, 7, 0));
+        innerDecide.Add("PondLeft");
+        innerDecide.Add("BridgeLeft");
+        innerDo.Add(new Vector3Int(9, 7, 0));
+        innerDo.Add(new Vector3Int(8, 7, 0));
+        decideInteraction.Add(new List<string>(innerDecide));
+        doInteraction.Add(new List<Vector3Int>(innerDo));
+        innerDecide.Clear();
+        innerDo.Clear();
+        startInteraction.Add(new Vector3Int(5, 7, 0));
+        innerDecide.Add("PondLeft");
+        innerDecide.Add("BridgeLeft");
+        innerDo.Add(new Vector3Int(3, 7, 0));
+        innerDo.Add(new Vector3Int(2, 7, 0));
+        decideInteraction.Add(new List<string>(innerDecide));
+        doInteraction.Add(new List<Vector3Int>(innerDo));
+        innerDecide.Clear();
+        innerDo.Clear();
+        startInteraction.Add(new Vector3Int(-2, 7, 0));
+        innerDecide.Add("FallEndRight");
+        innerDecide.Add("FallMiddleRight");
+        innerDecide.Add("FallStartRight");
+        innerDecide.Add("CornerRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDecide.Add("RoadRight");
+        innerDo.Add(new Vector3Int(-1, 9, 0));
+        innerDo.Add(new Vector3Int(0, 10, 0));
+        innerDo.Add(new Vector3Int(1, 11, 0));
+        innerDo.Add(new Vector3Int(1, 12, 0));
+        innerDo.Add(new Vector3Int(2, 12, 0));
+        innerDo.Add(new Vector3Int(3, 12, 0));
+        innerDo.Add(new Vector3Int(4, 12, 0));
+        innerDo.Add(new Vector3Int(5, 12, 0));
+        innerDo.Add(new Vector3Int(6, 12, 0));
+        innerDo.Add(new Vector3Int(7, 12, 0));
+        innerDo.Add(new Vector3Int(8, 12, 0));
+        innerDo.Add(new Vector3Int(9, 12, 0));
+        innerDo.Add(new Vector3Int(10, 12, 0));
+        innerDo.Add(new Vector3Int(11, 12, 0));
         decideInteraction.Add(new List<string>(innerDecide));
         doInteraction.Add(new List<Vector3Int>(innerDo));
         innerDecide.Clear();
@@ -96,6 +151,7 @@ public class Freeze : MonoBehaviour
             {
                 if (startInteraction[i] == currentPos)
                 {
+                    edge[i].enabled = false;
                     for (int j = 0; j < decideInteraction[i].Count; j++)
                     {
                         if (decideInteraction[i][j] == "RoadRight")
@@ -148,12 +204,13 @@ public class Freeze : MonoBehaviour
                         }
                         else if (decideInteraction[i][j] == "BridgeRight")
                         {
-                            StartCoroutine(freezePond(doInteraction[i][j], 0));
+                            StartCoroutine(makeRoad(doInteraction[i][j], 0));
                         }
                         else if (decideInteraction[i][j] == "BridgeLeft")
                         {
-                            StartCoroutine(freezePond(doInteraction[i][j], 1));
+                            StartCoroutine(makeRoad(doInteraction[i][j], 1));
                         }
+
                         delay += 0.1f;
                     }
                     break;

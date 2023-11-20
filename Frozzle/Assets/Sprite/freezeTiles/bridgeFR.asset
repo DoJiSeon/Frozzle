@@ -13,24 +13,24 @@ MonoBehaviour:
   m_Name: bridgeFR
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 21300000, guid: 605d60727a1369e43be96996c2fe6a13, type: 3}
-  - {fileID: 21300000, guid: 411cb0a5421b8494e870fb0983f400cf, type: 3}
-  - {fileID: 21300000, guid: c788ac88fd6b3814ebda19268f411785, type: 3}
-  - {fileID: 21300000, guid: 5f799cfd9ac0fbd4f8136438550a3039, type: 3}
-  - {fileID: 21300000, guid: 637974ed315a3d247a261ebe7cc939b0, type: 3}
-  - {fileID: 21300000, guid: 86b2a53a7997bfa4eb651f27e563b6c6, type: 3}
-  - {fileID: 21300000, guid: db9c9d0bf58fbb8488c5c152928aa2d4, type: 3}
-  - {fileID: 21300000, guid: 48c8a76807db38f46950abbf4b949931, type: 3}
-  - {fileID: 21300000, guid: a38c0a4992fc87b409e300672e81eda8, type: 3}
-  - {fileID: 21300000, guid: 6509a1903a4b24444b577d47e8de23cf, type: 3}
-  - {fileID: 21300000, guid: 794afa98e5dfc8744b065ba4a823faa7, type: 3}
-  - {fileID: 21300000, guid: 6436b871e1d17054088e7b056a652a15, type: 3}
-  - {fileID: 21300000, guid: 881b19bae5a814044bd1d371221b5d95, type: 3}
-  - {fileID: 21300000, guid: 640fc60995889904b9ce2221362040ee, type: 3}
-  - {fileID: 21300000, guid: 1d8d2f10ffa4eec46826ab2be94d774a, type: 3}
   - {fileID: 21300000, guid: e45c2d54d1736d64fbe31e03b08e0cba, type: 3}
-  m_MinSpeed: 30
-  m_MaxSpeed: 30
+  - {fileID: 21300000, guid: 1d8d2f10ffa4eec46826ab2be94d774a, type: 3}
+  - {fileID: 21300000, guid: 640fc60995889904b9ce2221362040ee, type: 3}
+  - {fileID: 21300000, guid: 881b19bae5a814044bd1d371221b5d95, type: 3}
+  - {fileID: 21300000, guid: 6436b871e1d17054088e7b056a652a15, type: 3}
+  - {fileID: 21300000, guid: 794afa98e5dfc8744b065ba4a823faa7, type: 3}
+  - {fileID: 21300000, guid: 6509a1903a4b24444b577d47e8de23cf, type: 3}
+  - {fileID: 21300000, guid: a38c0a4992fc87b409e300672e81eda8, type: 3}
+  - {fileID: 21300000, guid: 48c8a76807db38f46950abbf4b949931, type: 3}
+  - {fileID: 21300000, guid: db9c9d0bf58fbb8488c5c152928aa2d4, type: 3}
+  - {fileID: 21300000, guid: 86b2a53a7997bfa4eb651f27e563b6c6, type: 3}
+  - {fileID: 21300000, guid: 637974ed315a3d247a261ebe7cc939b0, type: 3}
+  - {fileID: 21300000, guid: 5f799cfd9ac0fbd4f8136438550a3039, type: 3}
+  - {fileID: 21300000, guid: c788ac88fd6b3814ebda19268f411785, type: 3}
+  - {fileID: 21300000, guid: 411cb0a5421b8494e870fb0983f400cf, type: 3}
+  - {fileID: 21300000, guid: 605d60727a1369e43be96996c2fe6a13, type: 3}
+  m_MinSpeed: 15
+  m_MaxSpeed: 15
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0
