@@ -44093,7 +44093,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &407332160
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44729,9 +44729,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 866022631}
-  - {fileID: 1351048079}
   - {fileID: 1164794260}
+  - {fileID: 1351048079}
+  - {fileID: 866022631}
   - {fileID: 602563466}
   - {fileID: 1565854769}
   - {fileID: 1493409390}
@@ -52488,10 +52488,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1746527025}
+  - {fileID: 998073116}
   - {fileID: 1325900256}
   - {fileID: 2030190440}
   - {fileID: 885337443}
-  - {fileID: 998073116}
   - {fileID: 13285349}
   - {fileID: 271232970}
   - {fileID: 358980360}

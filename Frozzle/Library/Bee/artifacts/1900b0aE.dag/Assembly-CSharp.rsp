@@ -411,6 +411,7 @@
 "Assets/Scripts/UI_Manager/N_StageChoose.cs"
 "Assets/Scripts/UI_Manager/reset_clear_stage.cs"
 "Assets/Scripts/UI_Manager/Sound cutScene.cs"
+"Assets/Scripts/UI_Manager/Sound cutScene2.cs"
 "Assets/Scripts/UI_Manager/Stage_Scene_Manager_1.cs"
 "Assets/Scripts/UI_Manager/Stage_Scene_Manager_2.cs"
 "Assets/Scripts/UI_Manager/Stage_Scene_Manager_3.cs"

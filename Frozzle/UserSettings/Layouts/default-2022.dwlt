@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1280
     height: 629.3334
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 371}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 47
+  controlID: 22
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 114
+  controlID: 68
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 46
+  controlID: 69
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1054,9 +1054,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 20690000
-      m_LastClickedID: 0
-      m_ExpandedIDs: a8baffffe2baffff32bbffff7abbffffdabcffff56c5ffffe4c7ffff38cbffff86cbffffbecbfffff2cbffff36ccffff66d0ffffead0ffff6ad1ffffa6d1ffff34d3ffff8cd4ffff92d6ffffd2d6ffff2cd7ffff6ed7ffffeed9ffff82ddffffd2ddffff18deffff50deffff9edeffffdedeffff18dfffff38e6ffff90e6ffff12e8ffff56e8ffffdaeaffff1eebffff64ebffffb0ebffffecebffff40ecffff42eeffffa8eeffff4af0ffff9cf0ffff0cf8ffff4ef8fffff6f9ffff986b00000c6c0000466c0000ae6c00007a7300004476000030770000aa770000c6770000f27700003287000094870000a8870000ce870000aa9500002a9600004696000072960000d69a00004a9b0000849b0000ec9b000030a10000dca1000032a20000a8a7000020ac000066ad00008cad000002ae000032ae00009eb4000076b70000c6ba0000
+      m_SelectedIDs: d8d9ffff
+      m_LastClickedID: -9768
+      m_ExpandedIDs: dee9ffffaceeffffe0eeffff58f0fffff8f0ffff82f1fffff2f4ffffaef8fffff6f9ffff4a6900004c6d0000bc7100005e7300000e740000d67a0000487b0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/UI_Manager
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1133,30 +1133,30 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/UI_Manager
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Github\Frozzle_1\Frozzle
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 26.99997}
-    m_SelectedIDs: 9a680000
-    m_LastClickedID: 26778
-    m_ExpandedIDs: 00000000fc670000fe670000006800009c68000000ca9a3b
+    scrollPos: {x: 0, y: 71}
+    m_SelectedIDs: cc7a0000
+    m_LastClickedID: 31436
+    m_ExpandedIDs: 00000000006800000268000004680000a0680000a26800006a7a0000727a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: SITIAN
+      m_OriginalName: SITIAN
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 26786
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
@@ -1170,7 +1170,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fc670000fe67000000680000
+    m_ExpandedIDs: 00000000006800000268000004680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
