@@ -7,7 +7,7 @@ public class N_StageChoose : MonoBehaviour
 {
     public void OnClickStart()
     {
-        SceneManager.LoadScene("N_StageChoose");
+        SceneManager.LoadScene("tutorial");
     }
     
     // Start is called before the first frame update
