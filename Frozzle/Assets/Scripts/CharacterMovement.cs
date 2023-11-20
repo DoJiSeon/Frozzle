@@ -18,6 +18,9 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
     public SpriteRenderer rend; // 스프라이트 변수
     Vector3 mousePos, transPos, targetPos, targetPos_rot; // 타겟의 방향 담을 변수
 
+    public Vector3Int currentPos;
+    public Tilemap tilemap;
+    public GameObject player;
 
     public bool up_spell_check, right_spell_check, can_spell;
 
@@ -46,6 +49,8 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         right_spell_check = false;
         can_spell = false;
 
+        tilemap = GetComponent<Tilemap>();
+        player = GameObject.Find("player");
     }
 
     private void MouseClick()
@@ -56,7 +61,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         if (map.HasTile(gridPosition)) // 그리드 포지션에 타일이 있다면?
         {
             destination = mousePosition; // 위치 값에 마우스 포지션 값 넣어주기
-            Debug.Log(destination);
+            // Debug.Log(destination);
         }
         CastRay();
     }
@@ -83,12 +88,18 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
 
     void Update()
     {
+        //currentPos = tilemap.WorldToCell(player.transform.position);
+        //Debug.Log(currentPos);
 
         if (Vector3.Distance(transform.position, destination) > 0.1f) // 마우스 위치와 현재 위치 사이의 거리가 0.1보다 크다면
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, movementSpeed * Time.deltaTime); // 그 위치로 이동
             find(); // 방향 관련 애니메이션 지시 메소드
-            
+            if (animator.GetBool("infall")== true)
+            {
+                animator.SetBool("infallmoving", true);
+
+            }
         }
         else // 캐릭터의 위치가 마우스 위치와 같다면
         {
@@ -105,6 +116,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
                 animator.SetTrigger("spell_t");
                 spell();
             }
+            animator.SetBool("infallmoving", false);
         }
 
     }
