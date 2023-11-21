@@ -22,6 +22,7 @@ public class stageTwoTalk : MonoBehaviour
     int clickCount = 0;
     int startClickCount = 0;
     int pageClickCount = 0;
+    int pageCount = 0;
 
     public List<Vector3Int> paperLocation = new List<Vector3Int>();
 
@@ -35,7 +36,6 @@ public class stageTwoTalk : MonoBehaviour
     bool pageFive = false;
     bool isClickable = true;
     bool isReading = false;
-    bool isCleared = false;
     bool startAutoStart = false;
     bool autoStart = true;
     bool pageOneAutoStart = true;
@@ -94,7 +94,7 @@ public class stageTwoTalk : MonoBehaviour
                 }
             } 
         }
-        if (isCleared)
+        if (pageCount == 5)
         {
             if (Input.GetMouseButtonDown(0) || autoStart) { 
                 autoStart = false;
@@ -174,6 +174,7 @@ public class stageTwoTalk : MonoBehaviour
                             pageOne = true;
                             isReading = false;
                             isDialoging = false;
+                            pageCount++;
                         }
                     }
                 }
@@ -199,6 +200,7 @@ public class stageTwoTalk : MonoBehaviour
                             pageTwo = true;
                             isReading = false;
                             isDialoging = false;
+                            pageCount++;
                         }
                     }
                 }
@@ -231,6 +233,7 @@ public class stageTwoTalk : MonoBehaviour
                             pageThree = true;
                             isReading = false;
                             isDialoging = false;
+                            pageCount++;
                         }
                     }
                   
@@ -261,6 +264,7 @@ public class stageTwoTalk : MonoBehaviour
                             pageFour = true;
                             isReading = false;
                             isDialoging = false;
+                            pageCount++;
                         }
                     }
                 }
@@ -291,9 +295,9 @@ public class stageTwoTalk : MonoBehaviour
                             talkPanel.SetActive(false);
                             pageClickCount = 0;
                             pageFive = true;
-                            isCleared = true;
                             isReading = false;
                             isDialoging = false;
+                            pageCount++;
                         }
                     }
                 }

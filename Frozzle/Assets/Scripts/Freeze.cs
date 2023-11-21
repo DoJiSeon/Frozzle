@@ -11,12 +11,12 @@ public class Freeze : MonoBehaviour
     public GameObject lens;
     public Tilemap tilemap;
     public float delay = 0.1f;
-    public EdgeCollider2D mapEdge;
     public List<TileBase> waterRoads = new List<TileBase>();
     public List<TileBase> waterFalls = new List<TileBase>();
     public List<TileBase> pond = new List<TileBase>();
     public List<TileBase> bridge = new List<TileBase>();
     public List<EdgeCollider2D> edge = new List<EdgeCollider2D>();
+    public List<EdgeCollider2D> mapEdge = new List<EdgeCollider2D>();
     private List<Vector3Int> startInteraction = new List<Vector3Int>();
     private List<Vector3Int> pondInteraction = new List<Vector3Int>();
     private List<Vector3Int> pondPosition = new List<Vector3Int>();
@@ -187,7 +187,10 @@ public class Freeze : MonoBehaviour
     IEnumerator climbingFall()
     {
         player.GetComponent<CharacterMovement>().enabled = false;
-        mapEdge.enabled = false;
+        for (int i = 0; i < mapEdge.Count; i++)
+        {
+            mapEdge[i].enabled = false;
+        }
         Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
         Debug.Log("entered");
         playerAnim.SetBool("endClimb", false);
@@ -210,12 +213,55 @@ public class Freeze : MonoBehaviour
             yield return null;
             player.transform.position = Vector3.MoveTowards(player.transform.position, targetTwo, 1 * Time.deltaTime);
         }
-        mapEdge.enabled = true;
+        for (int i = 0; i < mapEdge.Count; i++)
+        {
+            mapEdge[i].enabled = true;
+        }
         yield return new WaitForSeconds(1f);
         player.GetComponent<CharacterMovement>().enabled = true;
         playerAnim.SetBool("endClimb", true);
         playerAnim.SetBool("climbed", false);
     }
+
+    IEnumerator downingFall()
+    {
+        player.GetComponent<CharacterMovement>().enabled = false;
+        for (int i = 0; i < mapEdge.Count; i++)
+        {
+            mapEdge[i].enabled = false;
+        }
+        Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y - 1.5f, player.transform.position.z);
+        Debug.Log("entered");
+        playerAnim.SetBool("endClimb", false);
+        playerAnim.SetBool("climb", true);
+        yield return new WaitForSeconds(1f);
+        playerAnim.SetBool("climbing", true);
+        playerAnim.SetBool("climb", false);
+        while (player.transform.position.y > target.y)
+        {
+            Debug.Log("this");
+            yield return null;
+            player.transform.position = Vector3.MoveTowards(player.transform.position, target, 1 * Time.deltaTime);
+        }
+        playerAnim.SetBool("climbed", true);
+        playerAnim.SetBool("climbing", false);
+        Vector3 targetTwo = new Vector3(player.transform.position.x, target.y - 0.5f, player.transform.position.z);
+        while (player.transform.position.y < targetTwo.y)
+        {
+            Debug.Log("this");
+            yield return null;
+            player.transform.position = Vector3.MoveTowards(player.transform.position, targetTwo, 1 * Time.deltaTime);
+        }
+        for (int i = 0; i < mapEdge.Count; i++)
+        {
+            mapEdge[i].enabled = true;
+        }
+        yield return new WaitForSeconds(1f);
+        player.GetComponent<CharacterMovement>().enabled = true;
+        playerAnim.SetBool("endClimb", true);
+        playerAnim.SetBool("climbed", false);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -335,6 +381,19 @@ public class Freeze : MonoBehaviour
                     CharacterMovement.Instance.rend.flipX = isFallFlip[i];
                     CharacterMovement.Instance.destination = tilemap.GetCellCenterWorld(fallEndPosition[i]);
                     StartCoroutine(climbingFall());
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            for (int i = 0; i < fallPosition.Count; i++)
+            {
+                if (currentPos == fallEndPosition[i] && isFallFrozen[i])
+                {
+                    CharacterMovement.Instance.rend.flipX = isFallFlip[i];
+                    CharacterMovement.Instance.destination = tilemap.GetCellCenterWorld(fallPosition[i]);
+                    StartCoroutine(downingFall());
                 }
             }
         }
