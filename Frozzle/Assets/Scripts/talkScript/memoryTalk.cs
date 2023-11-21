@@ -546,7 +546,7 @@ public class memoryTalk : MonoBehaviour
             {
                 talkPanel.SetActive(true);
                 nameTag.SetActive(true);
-                nameTagInnerText.text = "ÄÝµå";
+                nameTagInnerText.text = "Ä®¸®¿ò";
                 seq = sentenceSequence(textList[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;
@@ -564,7 +564,7 @@ public class memoryTalk : MonoBehaviour
             {
                 talkPanel.SetActive(true);
                 nameTag.SetActive(true);
-                nameTagInnerText.text = "ÄÝµå";
+                nameTagInnerText.text = "Ä®¸®¿ò";
                 seq = sentenceSequence(textList[clickCount]);
                 StartCoroutine(seq);
                 clickCount++;

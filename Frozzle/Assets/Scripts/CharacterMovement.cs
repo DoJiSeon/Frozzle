@@ -25,6 +25,8 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
 
     public bool up_spell_check, right_spell_check, can_spell;
 
+    public ParticleSystem particle;
+
     public static CharacterMovement _instance;
     public static CharacterMovement Instance
     {
@@ -67,6 +69,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
 
         tilemap = GetComponent<Tilemap>();
         player = GameObject.Find("player");
+        particle = GetComponentInChildren<ParticleSystem>();
     }
 
     private void MouseClick()
@@ -111,7 +114,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         {
             transform.position = Vector3.MoveTowards(transform.position, destination, movementSpeed * Time.deltaTime); // 그 위치로 이동
             find(); // 방향 관련 애니메이션 지시 메소드
-            if (animator.GetBool("infall")== true)
+            if (animator.GetBool("infall") == true)
             {
                 animator.SetBool("infallmoving", true);
 
@@ -127,7 +130,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
                 rend.flipX = true; // 좌우반전해주고
                 is_move = false; // 움직이기 중단
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 animator.SetTrigger("spell_t");
                 spell();
@@ -239,9 +242,9 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
         dir_rot.y = 0;  // 이걸 왜했더라 x 값만 필요했나봐요~~^^
         Vector3 player_pos = new Vector3(transform.position.x, transform.position.y, 0); // 핸재 포지션의 값을 넣어주기
 
-        if (animator.GetBool("up")==true) // 만약에 타겟의 y 값이 플레이어의 y 값보다 크다면? = 마우스 위치가 위쪽이라면?
+        if (animator.GetBool("up") == true) // 만약에 타겟의 y 값이 플레이어의 y 값보다 크다면? = 마우스 위치가 위쪽이라면?
         {
-            if (animator.GetBool("right")== true) // 만약 마우스 위치가 오른쪽이라면?
+            if (animator.GetBool("right") == true) // 만약 마우스 위치가 오른쪽이라면?
             {
                 rend.flipX = false; // 이미 오른쪽 애니메이터를 넣어둬서 뒤집을 필요가 없기 때문에 폴스
 
@@ -252,6 +255,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
                 //animator.SetBool("spell", true);
                 is_right = true;
                 flip_check = false;
+                StartCoroutine("Particle");
             }
             else if (animator.GetBool("right") == false) // 만약 위쪽이고 왼쪽쯤에 마우스 클릭이 있었떠라면?
             {
@@ -263,6 +267,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
                 //animator.SetBool("spell", true);
                 is_right = false;
                 flip_check = true;
+                StartCoroutine("Particle");
             }
         }
         else if (animator.GetBool("up") == false) // y축이 아래에 있다면, 마우스가 아래쪽에 클릭 됐다면?
@@ -278,6 +283,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
                 //animator.SetBool("spell", true);
                 is_right = false;
                 flip_check = true;
+                StartCoroutine("Particle");
             }
             else if (animator.GetBool("right") == false) // 왼쪽 방향 클릭 되었다면?
             {
@@ -290,7 +296,14 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
                 //animator.SetBool("spell", true);
                 is_right = true;
                 flip_check = false;
+                StartCoroutine("Particle");
             }
         }
+    }
+
+    public IEnumerator Particle()
+    {
+        particle.Play();
+        yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
     }
 }
