@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰이는 스크립트
 {
@@ -10,7 +11,7 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
     public Tilemap map; // 타일맵 변수
     MouseInput mouseInput;  // 마우스 인풋 클래스 변수
     [SerializeField] private float movementSpeed; // 움직이는 스피드
-    private Vector3 destination; // 마우스 클릭한 위치
+    public Vector3 destination; // 마우스 클릭한 위치
 
     public bool is_map, is_move; // 맵 안에 있는가, 움직이는 가
     public bool is_walk, flip_check, is_right; // 걷고있냐, 애니메이션 반전 할거냐, 오른쪽 방향을 보고있냐
@@ -23,6 +24,21 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
     public GameObject player;
 
     public bool up_spell_check, right_spell_check, can_spell;
+
+    public static CharacterMovement _instance;
+    public static CharacterMovement Instance
+    {
+        get
+        {
+            if (!_instance)
+            {
+                _instance = FindObjectOfType(typeof(CharacterMovement)) as CharacterMovement;
+                if (_instance == null)
+                    Debug.Log("no singleton obj");
+            }
+            return _instance;
+        }
+    }
 
     private void Awake()
     {

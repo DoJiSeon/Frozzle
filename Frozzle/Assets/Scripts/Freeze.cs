@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
 
 public class Freeze : MonoBehaviour
 {
     public GameObject player;
+    public Animator playerAnim;
+    public GameObject lens;
     public Tilemap tilemap;
     public float delay = 0.1f;
+    public EdgeCollider2D mapEdge;
     public List<TileBase> waterRoads = new List<TileBase>();
     public List<TileBase> waterFalls = new List<TileBase>();
     public List<TileBase> pond = new List<TileBase>();
@@ -15,6 +19,14 @@ public class Freeze : MonoBehaviour
     public List<EdgeCollider2D> edge = new List<EdgeCollider2D>();
     private List<Vector3Int> startInteraction = new List<Vector3Int>();
     private List<Vector3Int> pondInteraction = new List<Vector3Int>();
+    private List<Vector3Int> pondPosition = new List<Vector3Int>();
+    private List<Vector3Int> fallPosition = new List<Vector3Int>();
+    private List<bool> isFallFlip = new List<bool>();
+    private List<Vector3Int> fallEndTilePosition = new List<Vector3Int>();
+    private List<bool> isFallFrozen = new List<bool>();
+    private List<Vector3Int> fallEndPosition = new List<Vector3Int>();
+    private List<string> isPondFrozen = new List<string>();
+    private List<string> pondKind = new List<string>();
     private List<List<string>> decideInteraction = new List<List<string>>();
     private List<string> innerDecide = new List<string>();
     private List<List<Vector3Int>> doInteraction = new List<List<Vector3Int>>();
@@ -26,6 +38,7 @@ public class Freeze : MonoBehaviour
     {
         tilemap = GetComponent<Tilemap>();
         player = GameObject.Find("player");
+        lens.SetActive(false);
         startInteraction.Clear();
         doInteraction.Clear();
         Debug.Log("hello");
@@ -52,10 +65,15 @@ public class Freeze : MonoBehaviour
         innerDecide.Clear();
         innerDo.Clear();
         startInteraction.Add(new Vector3Int(9, 2, 0));
+        fallPosition.Add(new Vector3Int(9, 2, 0));
+        fallEndPosition.Add(new Vector3Int(13, 7, 0));
+        isFallFrozen.Add(false);
+        isFallFlip.Add(true);
         innerDecide.Add("FallEndRight");
         innerDecide.Add("FallMiddleRight");
         innerDecide.Add("FallStartRight");
         innerDo.Add(new Vector3Int(10, 4, 0));
+        fallEndTilePosition.Add(new Vector3Int(10, 4, 0));
         innerDo.Add(new Vector3Int(11, 5, 0));
         innerDo.Add(new Vector3Int(12, 6, 0));
         decideInteraction.Add(new List<string>(innerDecide));
@@ -63,24 +81,36 @@ public class Freeze : MonoBehaviour
         innerDecide.Clear();
         innerDo.Clear();
         startInteraction.Add(new Vector3Int(11, 7, 0));
+        pondInteraction.Add(new Vector3Int(11, 7, 0));
         innerDecide.Add("PondLeft");
+        pondKind.Add("PondLeft");
+        isPondFrozen.Add("no");
         innerDecide.Add("BridgeLeft");
         innerDo.Add(new Vector3Int(9, 7, 0));
+        pondPosition.Add(new Vector3Int(9, 7, 0));
         innerDo.Add(new Vector3Int(8, 7, 0));
         decideInteraction.Add(new List<string>(innerDecide));
         doInteraction.Add(new List<Vector3Int>(innerDo));
         innerDecide.Clear();
         innerDo.Clear();
         startInteraction.Add(new Vector3Int(5, 7, 0));
+        pondInteraction.Add(new Vector3Int(5, 7, 0));
         innerDecide.Add("PondLeft");
+        pondKind.Add("PondLeft");
+        isPondFrozen.Add("no");
         innerDecide.Add("BridgeLeft");
         innerDo.Add(new Vector3Int(3, 7, 0));
+        pondPosition.Add(new Vector3Int(3, 7, 0));
         innerDo.Add(new Vector3Int(2, 7, 0));
         decideInteraction.Add(new List<string>(innerDecide));
         doInteraction.Add(new List<Vector3Int>(innerDo));
         innerDecide.Clear();
         innerDo.Clear();
         startInteraction.Add(new Vector3Int(-2, 7, 0));
+        fallPosition.Add(new Vector3Int(-2, 7, 0));
+        fallEndPosition.Add(new Vector3Int(2, 12, 0));
+        isFallFrozen.Add(false);
+        isFallFlip.Add(true);
         innerDecide.Add("FallEndRight");
         innerDecide.Add("FallMiddleRight");
         innerDecide.Add("FallStartRight");
@@ -96,6 +126,7 @@ public class Freeze : MonoBehaviour
         innerDecide.Add("RoadRight");
         innerDecide.Add("RoadRight");
         innerDo.Add(new Vector3Int(-1, 9, 0));
+        fallEndTilePosition.Add(new Vector3Int(-1, 9, 0));
         innerDo.Add(new Vector3Int(0, 10, 0));
         innerDo.Add(new Vector3Int(1, 11, 0));
         innerDo.Add(new Vector3Int(1, 12, 0));
@@ -123,12 +154,26 @@ public class Freeze : MonoBehaviour
 
     IEnumerator freezeFall(Vector3Int pos, int toChange)
     {
+        for (int i = 0; i < fallEndTilePosition.Count; i++)
+        {
+            if (fallEndTilePosition[i] == pos)
+            {
+                isFallFrozen[i] = true;
+            }
+        }
         yield return new WaitForSeconds(delay);
         tilemap.SetTile(pos, waterFalls[toChange]);
     }
 
     IEnumerator freezePond(Vector3Int pos, int toChange)
     {
+        for (int i = 0; i < pondPosition.Count; i++)
+        {
+            if (pondPosition[i] == pos)
+            {
+                isPondFrozen[i] = "yes";
+            }
+        }
         yield return new WaitForSeconds(delay);
         tilemap.SetTile(pos, pond[toChange]);
     }
@@ -139,14 +184,46 @@ public class Freeze : MonoBehaviour
         tilemap.SetTile(pos, bridge[toChange]);
     }
 
+    IEnumerator climbingFall()
+    {
+        player.GetComponent<CharacterMovement>().enabled = false;
+        mapEdge.enabled = false;
+        Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+        Debug.Log("entered");
+        playerAnim.SetBool("endClimb", false);
+        playerAnim.SetBool("climb", true);
+        yield return new WaitForSeconds(1f);
+        playerAnim.SetBool("climbing", true);
+        playerAnim.SetBool("climb", false);
+        while (player.transform.position.y < target.y)
+        {
+            Debug.Log("this");
+            yield return null;
+            player.transform.position = Vector3.MoveTowards(player.transform.position, target, 1 * Time.deltaTime);
+        }
+        playerAnim.SetBool("climbed", true);
+        playerAnim.SetBool("climbing", false);
+        Vector3 targetTwo = new Vector3(player.transform.position.x, target.y + 0.5f, player.transform.position.z);
+        while (player.transform.position.y < targetTwo.y)
+        {
+            Debug.Log("this");
+            yield return null;
+            player.transform.position = Vector3.MoveTowards(player.transform.position, targetTwo, 1 * Time.deltaTime);
+        }
+        mapEdge.enabled = true;
+        yield return new WaitForSeconds(1f);
+        player.GetComponent<CharacterMovement>().enabled = true;
+        playerAnim.SetBool("endClimb", true);
+        playerAnim.SetBool("climbed", false);
+    }
+
     // Update is called once per frame
     void Update()
     {
         //Vector3Int currentPos = tilemap.WorldToCell(player.transform.position);
         Vector3Int currentPos = tilemap.WorldToCell(player.transform.position);
-        if (Input.GetKeyDown(KeyCode.E) && waterRoads.Count > 0 && waterFalls.Count > 0)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            delay = 0f;
             for (int i = 0; i < startInteraction.Count; i++)
             {
                 if (startInteraction[i] == currentPos)
@@ -214,6 +291,50 @@ public class Freeze : MonoBehaviour
                         delay += 0.1f;
                     }
                     break;
+                }
+            }
+        }
+        Vector3 headPos = new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z);
+        lens.transform.position = headPos;
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            for (int i = 0; i < pondInteraction.Count; i++)
+            {
+                Debug.Log(decideInteraction[i][0]);
+                if (currentPos == pondInteraction[i] && isPondFrozen[i] == "yes" && pondKind[i] == "PondRight")
+                {
+                    tilemap.SetTile(pondPosition[i], pond[2]);
+                    isPondFrozen[i] = "empty";
+                    lens.SetActive(true);
+                } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "yes" && pondKind[i] == "PondLeft")
+                {
+                    tilemap.SetTile(pondPosition[i], pond[3]);
+                    isPondFrozen[i] = "empty";
+                    lens.SetActive(true);
+                } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondRight")
+                {
+                    tilemap.SetTile(pondPosition[i], pond[4]);
+                    isPondFrozen[i] = "yes";
+                    lens.SetActive(false);
+                } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondLeft")
+                {
+                    tilemap.SetTile(pondPosition[i], pond[5]);
+                    isPondFrozen[i] = "yes";
+                    lens.SetActive(false);
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            for (int i = 0; i < fallPosition.Count; i++)
+            {
+                if (currentPos == fallPosition[i] && isFallFrozen[i])
+                {
+                    CharacterMovement.Instance.rend.flipX = isFallFlip[i];
+                    CharacterMovement.Instance.destination = tilemap.GetCellCenterWorld(fallEndPosition[i]);
+                    StartCoroutine(climbingFall());
                 }
             }
         }
