@@ -9,7 +9,7 @@ public class SoundcutScene2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("PlayMusic", 46f);
+        Invoke("PlayMusic", 52f);
     }
 
     void PlayMusic()
@@ -17,6 +17,16 @@ public class SoundcutScene2 : MonoBehaviour
         if (musicAudioSource != null && !musicAudioSource.isPlaying)
         {
             musicAudioSource.Play();
+
+            Invoke("StopMusic", 6f);
+        }
+    }
+
+    void StopMusic()
+    {
+        if (musicAudioSource != null && musicAudioSource.isPlaying)
+        {
+            musicAudioSource.Stop();
         }
     }
     // Update is called once per frame

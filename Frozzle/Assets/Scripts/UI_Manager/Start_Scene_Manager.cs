@@ -11,6 +11,7 @@ public class Start_Scene_Manager : MonoBehaviour
 
     void Start()
     {
+        Screen.SetResolution(1920, 1080, true);
         if (fader)
         {
             fader.enabled = false;
