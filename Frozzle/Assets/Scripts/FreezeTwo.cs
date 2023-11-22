@@ -17,6 +17,9 @@ public class FreezeTwo : MonoBehaviour
     public List<TileBase> bridge = new List<TileBase>();
     public List<EdgeCollider2D> edge = new List<EdgeCollider2D>();
     public List<EdgeCollider2D> mapEdge = new List<EdgeCollider2D>();
+    public AudioSource freezeRoadSound;
+    public AudioSource pondSound;
+    public AudioSource antiPondSound;
     private List<Vector3Int> startInteraction = new List<Vector3Int>();
     private List<Vector3Int> pondInteraction = new List<Vector3Int>();
     private List<Vector3Int> pondPosition = new List<Vector3Int>();
@@ -384,6 +387,8 @@ public class FreezeTwo : MonoBehaviour
                 if (startInteraction[i] == currentPos)
                 {
                     edge[i].enabled = false;
+                    freezeRoadSound.mute = false;
+                    freezeRoadSound.Play();
                     for (int j = 0; j < decideInteraction[i].Count; j++)
                     {
                         if (decideInteraction[i][j] == "RoadRight")
@@ -461,21 +466,32 @@ public class FreezeTwo : MonoBehaviour
                 {
                     tilemap.SetTile(pondPosition[i], pond[2]);
                     isPondFrozen[i] = "empty";
+                    pondSound.mute = false;
+                    pondSound.Play();
                     lens.SetActive(true);
-                } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "yes" && pondKind[i] == "PondLeft")
+                }
+                else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "yes" && pondKind[i] == "PondLeft")
                 {
                     tilemap.SetTile(pondPosition[i], pond[3]);
                     isPondFrozen[i] = "empty";
+                    pondSound.mute = false;
+                    pondSound.Play();
                     lens.SetActive(true);
-                } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondRight")
+                }
+                else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondRight")
                 {
                     tilemap.SetTile(pondPosition[i], pond[4]);
                     isPondFrozen[i] = "yes";
+                    antiPondSound.mute = false;
+                    antiPondSound.Play();
                     lens.SetActive(false);
-                } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondLeft")
+                }
+                else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondLeft")
                 {
                     tilemap.SetTile(pondPosition[i], pond[5]);
                     isPondFrozen[i] = "yes";
+                    antiPondSound.mute = false;
+                    antiPondSound.Play();
                     lens.SetActive(false);
                 }
             }

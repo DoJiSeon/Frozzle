@@ -62,6 +62,7 @@ public class tutorialTalk : MonoBehaviour
             player.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(27, 0, 0));
             calium.transform.position = tilemap.GetCellCenterWorld(new Vector3Int(29, -1, 0));
         }
+        CharacterMovement.Instance.destination = player.transform.position;
     }
 
     // Update is called once per frame

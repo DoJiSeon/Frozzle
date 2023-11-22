@@ -23,6 +23,8 @@ public class CharacterMovement : MonoBehaviour // 캐릭터 이동 및 애니메이션에 쓰
     public Tilemap tilemap;
     public GameObject player;
 
+    public bool walkSound = false;
+
     public bool up_spell_check, right_spell_check, can_spell;
 
     public ParticleSystem particle;

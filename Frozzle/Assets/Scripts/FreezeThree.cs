@@ -25,6 +25,9 @@ public class FreezeThree : MonoBehaviour
     public List<Vector3Int> ice = new List<Vector3Int>();
     public List<EdgeCollider2D> edge = new List<EdgeCollider2D>();
     public List<EdgeCollider2D> mapEdge = new List<EdgeCollider2D>();
+        public AudioSource freezeRoadSound;
+    public AudioSource pondSound;
+    public AudioSource antiPondSound;
     private List<Vector3Int> startInteraction = new List<Vector3Int>();
     private List<Vector3Int> pondInteraction = new List<Vector3Int>();
     private List<Vector3Int> pondPosition = new List<Vector3Int>();
@@ -352,6 +355,8 @@ public class FreezeThree : MonoBehaviour
                 if (startInteraction[i] == currentPos)
                 {
                     edge[i].enabled = false;
+                    freezeRoadSound.mute = false;
+                    freezeRoadSound.Play();
                     for (int j = 0; j < decideInteraction[i].Count; j++)
                     {
                         if (decideInteraction[i][j] == "RoadRight")
@@ -430,24 +435,32 @@ public class FreezeThree : MonoBehaviour
                     tilemap.SetTile(pondPosition[i], pond[2]);
                     isPondFrozen[i] = "empty";
                     lens.SetActive(true);
+                    pondSound.mute = false;
+                    pondSound.Play();
                     hasLens = true;
                 } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "yes" && pondKind[i] == "PondLeft")
                 {
                     tilemap.SetTile(pondPosition[i], pond[3]);
                     isPondFrozen[i] = "empty";
                     lens.SetActive(true);
+                    pondSound.mute = false;
+                    pondSound.Play();
                     hasLens = true;
                 } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondRight")
                 {
                     tilemap.SetTile(pondPosition[i], pond[4]);
                     isPondFrozen[i] = "yes";
                     lens.SetActive(false);
+                    antiPondSound.mute = false;
+                    antiPondSound.Play();
                     hasLens = false;
                 } else if (currentPos == pondInteraction[i] && isPondFrozen[i] == "empty" && pondKind[i] == "PondLeft")
                 {
                     tilemap.SetTile(pondPosition[i], pond[5]);
                     isPondFrozen[i] = "yes";
                     lens.SetActive(false);
+                    antiPondSound.mute = false;
+                    antiPondSound.Play();
                     hasLens = false;
                 }
             }
@@ -458,6 +471,8 @@ public class FreezeThree : MonoBehaviour
                     if (currentPos == lensInteraction[i]) {
                         lenses[i].SetActive(true);
                         lens.SetActive(false);
+                        antiPondSound.mute = false;
+                        antiPondSound.Play();
                         StartCoroutine(changeIce(ice[i]));
                     }
                 }
